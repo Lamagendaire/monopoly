@@ -6,6 +6,8 @@
 
 package Jeu;
 
+import Data.Monopoly;
+
 /**
  *
  * @author defoursr
@@ -17,7 +19,7 @@ public class MonopMain {
      */
     public static void main(String[] args) {
         // TODO code application logic here l
-        
+        Monopoly monop= new Monopoly("/users/info/etu-s2/defoursr/projet/Monopoly/src/Data/data.txt");
     }
     
 }

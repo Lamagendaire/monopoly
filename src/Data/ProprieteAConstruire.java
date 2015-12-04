@@ -8,4 +8,8 @@ public class ProprieteAConstruire extends CarreauPropriete {
 	private Object _prixMaison;
 	private int _tabLoyers;
 	private Groupe _groupePropriete;
+
+    public ProprieteAConstruire(Monopoly _monopoly, String _nomCarreau, int _numero) {
+        super(_monopoly, _nomCarreau, _numero);
+    }
 }

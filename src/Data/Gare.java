@@ -2,6 +2,10 @@ package Data;
 
 public class Gare extends CarreauPropriete {
 
+    public Gare(Monopoly _monopoly, String _nomCarreau, int _numero) {
+        super(_monopoly, _nomCarreau, _numero);
+    }
+
 	public void action(Joueur aJ) {
 		throw new UnsupportedOperationException();
 	}
