@@ -1,3 +1,8 @@
+package Ui;
+
+import Data.Monopoly;
+import Data.Joueur;
+
 public class IHM {
 	public Monopoly _monopoly;
 

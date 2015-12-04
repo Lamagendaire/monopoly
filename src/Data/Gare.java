@@ -1,3 +1,5 @@
+package Data;
+
 public class Gare extends CarreauPropriete {
 
 	public void action(Joueur aJ) {

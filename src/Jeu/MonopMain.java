@@ -4,19 +4,19 @@
  * and open the template in the editor.
  */
 
-package monopoly;
+package Jeu;
 
 /**
  *
  * @author defoursr
  */
-public class Monopoly {
+public class MonopMain {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // TODO code application logic here l
     }
     
 }

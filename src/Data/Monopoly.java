@@ -1,3 +1,8 @@
+package Data;
+
+import Data.Joueur;
+import Data.Carreau;
+import Ui.IHM;
 import java.util.ArrayList;
 import java.util.HashMap;
 
