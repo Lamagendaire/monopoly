@@ -7,7 +7,7 @@ public class Monopoly {
 	public IHM _ihm;
 	private Carreau _carreaux;
 	private ArrayList<Joueur> _joueurs = new ArrayList<Joueur>();
-
+        //coucou tu as gagné
 	public void jouerUnCoup(Joueur aJ) {
 		throw new UnsupportedOperationException();
 	}
