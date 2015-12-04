@@ -96,8 +96,9 @@ public class Monopoly {
 		
 		return data;
 	}
-}
 
-	/*public HashMap<Joueur> getJoueurs() {
+
+	public HashMap<Integer,Joueur> getJoueurs() {
 		throw new UnsupportedOperationException();
-	}*/
+	}
+}
