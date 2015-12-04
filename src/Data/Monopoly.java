@@ -101,4 +101,9 @@ public class Monopoly {
 	public HashMap<Integer,Joueur> getJoueurs() {
 		throw new UnsupportedOperationException();
 	}
+        
+        //ghfguirthguithgui
+        //jcrifji
+        //<3
+       int lol;
 }
