@@ -6,7 +6,7 @@
 
 package Jeu;
 
-import Data.Monopoly;
+import Data.*;
 
 /**
  *
@@ -18,8 +18,27 @@ public class MonopMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here l
+        
+        //_________________________INITIALISATION_______________________________
         Monopoly monop= new Monopoly("/users/info/etu-s2/defoursr/projet/Monopoly/src/Data/data.txt");
+        //______________________________________________________________________
+        
+        
+        
+        
+        //________________________LA PARTIE COMMENCE____________________________
+        
+            //temps qu'il reste + d'1 joueur en jeu, les tours s'enchaînent:
+	while(monop.getJoueurs().size()<1){
+            //Pour chaque joueur encore en jeu, on joue:
+            for(Joueur j: monop.getJoueurs().values()){
+                //temps que le joueur fait des doubles sans aller en prison
+                while(monop.isDoubleDé()){
+                    monop.jouerUnCoup(j);
+                }
+            }
+        }
+        //______________________________________________________________________
     }
     
 }

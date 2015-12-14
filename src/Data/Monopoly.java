@@ -18,9 +18,11 @@ public class Monopoly {
 	public IHM _ihm;
 	private HashMap<Integer,Carreau> _carreaux= new HashMap();
 	private LinkedHashMap<String,Joueur> _joueurs = new LinkedHashMap<String,Joueur>();
-        //coucou tu as gagné
+        
 	public void jouerUnCoup(Joueur aJ) {
-		throw new UnsupportedOperationException();
+                
+                    
+                
 	}
 
 	private void lancerDésAvancer(Joueur j) {
@@ -30,10 +32,7 @@ public class Monopoly {
                 j.changerPosition(totalDés);
             }else{
                 this.tripleDouble(j);
-            }
-            
-            
-		
+            }	
 	}
 
 	public int lancerDes() {
