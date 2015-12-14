@@ -25,6 +25,14 @@ public class Monopoly {
 
 	private void lancerDésAvancer(Joueur j) {
             int totalDés = lancerDes();
+            if (this.getCompteDoubleDé()<3){
+                _ihm.messageJoueurCourant(j, totalDés);
+                j.changerPosition(totalDés);
+            }else{
+                this.tripleDouble(j);
+            }
+            
+            
 		
 	}
 
@@ -37,15 +45,15 @@ public class Monopoly {
 	}
 
 	public Carreau chercherCarreau(int aNumFinal) {
-		throw new UnsupportedOperationException();
+		return _carreaux.get(aNumFinal);
 	}
 
-	public void tripleDouble() {
-		throw new UnsupportedOperationException();
+	public void tripleDouble(Joueur j) {
+                for(Carreau pris: _carreaux.values()){
+                    if(pris.getNomCarreau().equals("Simple Visite / En Prison")){j.setPositionCourante(pris);}
+                }
+		
 	}
-
-        
-
 
 	public Monopoly(String dataFilename){
 		buildGamePlateau(dataFilename);
@@ -53,15 +61,25 @@ public class Monopoly {
 	
 	private void buildGamePlateau(String dataFilename)
 	{
+            ArrayList<Groupe> groupes = new ArrayList<Groupe>();
+            for(CouleurPropriete coul: CouleurPropriete.values()){
+                groupes.add(new Groupe(coul));
+                System.out.println("groupe créé "+coul.toString());
+            }
 		try{
 			ArrayList<String[]> data = readDataFile(dataFilename, ",");
-			
 			//TODO: create cases instead of displaying
 			for(int i=0; i<data.size(); ++i){
 				String caseType = data.get(i)[0];
 				if(caseType.compareTo("P") == 0){
 					System.out.println("Propriété :\t" + data.get(i)[2] + "\t@ case " + data.get(i)[1]);
-                                        ProprieteAConstruire newcarreau = new ProprieteAConstruire(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]));
+                                        Groupe groupeChoisie=null;
+                                        for(Groupe group: groupes){
+                                            if(data.get(i)[3].equals(group.getCouleur().toString())){groupeChoisie=group;}
+                                        }
+                                        
+                                        ProprieteAConstruire newcarreau = new ProprieteAConstruire(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),groupeChoisie);
+                                        groupeChoisie.addPropriete(newcarreau);
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
 				}
 				else if(caseType.compareTo("G") == 0){
@@ -99,6 +117,9 @@ public class Monopoly {
 		catch(FileNotFoundException e){
 			System.err.println("[buildGamePlateau()] : Fichier non trouvé!");
 		}
+                catch(NullPointerException e){
+			System.err.println("[buildGamePlateau()] : Couleur du carreau non trouvé!");
+                }
 		catch(IOException e){
 			System.err.println("[buildGamePlateau()] : Erreur de lecture du fichier!");
 		}
