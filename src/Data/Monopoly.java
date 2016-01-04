@@ -148,7 +148,7 @@ public class Monopoly {
 			data.add(line.split(token));
 		}
 		reader.close();
-		
+		//
 		return data;
 	}
 
