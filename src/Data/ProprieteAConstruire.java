@@ -112,4 +112,6 @@ public class ProprieteAConstruire extends CarreauPropriete {
     private void setGroupePropriete(Groupe _groupePropriete) {
         this._groupePropriete = _groupePropriete;
     }
+
+
 }

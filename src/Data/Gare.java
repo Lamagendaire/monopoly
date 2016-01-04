@@ -45,4 +45,5 @@ public class Gare extends CarreauPropriete {
 	public void setProprietaire(Joueur aJ) {
 		throw new UnsupportedOperationException();
 	}
+
 }

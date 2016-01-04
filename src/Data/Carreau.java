@@ -26,7 +26,9 @@ public abstract class Carreau {
 		return this._nomCarreau;
 	}
         
-        public abstract void action() ;
+        public abstract void action();
+            
+        
             
         
 
