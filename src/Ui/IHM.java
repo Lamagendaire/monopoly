@@ -1,11 +1,15 @@
 package Ui;
 
-import Data.Joueur;
+import Data.Carreau;
+import Data.*;
 import Data.Monopoly;
+import Data.ProprieteAConstruire;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class IHM {
-	public Monopoly _monopoly;
+	
+    
 
 	public void messageJoueurCourant(Joueur aJ, int aTotalDes) {
 		throw new UnsupportedOperationException();
@@ -33,8 +37,8 @@ public class IHM {
             return sc.nextLine();
         }
         
-        public void afficherResDes(Joueur J, int TotDes) {
-            System.out.println("Lancé dés de " + J.getNom() + " : " + TotDes );
+        public void afficherResDes(String nomJ, int TotDes) {
+            System.out.println("Lancé dés de " + nomJ + " : " + TotDes );
         }
 
 

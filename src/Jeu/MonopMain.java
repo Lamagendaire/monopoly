@@ -7,6 +7,8 @@
 package Jeu;
 
 import Data.*;
+import java.util.LinkedHashMap;
+import java.util.Scanner;
 
 /**
  *
@@ -24,21 +26,41 @@ public class MonopMain {
         //______________________________________________________________________
         
         
+        //________________________TEST__________________________________________
+        Joueur j1 = new Joueur("j1", monop);
+        Joueur j2 = new Joueur("j2", monop);
+        Joueur j3 = new Joueur("j3", monop);
+        LinkedHashMap<Integer,Joueur> joueurs = new LinkedHashMap<Integer,Joueur>();
+        joueurs.put(1, j1);
+        joueurs.put(2, j2);
+        joueurs.put(3, j3);
+        monop.setJoueurs(joueurs);
         
         
+        
+        
+        boolean partie= true;
+        if (partie){
         //________________________LA PARTIE COMMENCE____________________________
         
             //temps qu'il reste + d'1 joueur en jeu, les tours s'enchaînent:
-	while(monop.getJoueurs().size()<1){
+	while(monop.getJoueurs().size()>1 && partie){
             //Pour chaque joueur encore en jeu, on joue:
             for(Joueur j: monop.getJoueurs().values()){
+                monop.setDoubleDé(true);
+                monop.setCompteDoubleDé(0);
                 //temps que le joueur fait des doubles sans aller en prison
                 while(monop.isDoubleDé()){
+                    System.out.print("joueur " + j.getNom()+ " : "+j.getPositionCourante().getNumero()+"  "+j.getPositionCourante().getNomCarreau() );
                     monop.jouerUnCoup(j);
+                    System.out.println("    => "+j.getPositionCourante().getNumero()+"  "+j.getPositionCourante().getNomCarreau() );
+                    
+                    
                 }
             }
         }
         //______________________________________________________________________
+        }
     }
     
 }

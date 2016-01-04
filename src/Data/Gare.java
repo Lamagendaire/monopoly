@@ -2,8 +2,8 @@ package Data;
 
 public class Gare extends CarreauPropriete {
 
-    public Gare(Monopoly _monopoly, String _nomCarreau, int _numero) {
-        super(_monopoly, _nomCarreau, _numero);
+    public Gare(Monopoly _monopoly, String _nomCarreau, int _numero,String _type) {
+        super(_monopoly, _nomCarreau,_type, _numero);
     }
 
 	public void action(Joueur aJ) {

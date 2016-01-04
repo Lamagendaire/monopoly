@@ -13,11 +13,11 @@ public class Joueur {
     private ArrayList<ProprieteAConstruire> _proprietesAConstruire = new ArrayList<ProprieteAConstruire>();
         
         public Joueur(String nomJ, Monopoly M) {
-           this.setNomJoueur(_nomJoueur);
+           this.setNomJoueur(nomJ);
            this.setMonopoly(M);
            this.setCompagnies(new ArrayList<Compagnie>());
            this.setGares(new ArrayList<Gare>());
-           this.setPositionCourante(_monopoly.getCarreaux().get(0));
+           _positionCourante=(_monopoly.getCases().get(1));
            this.setProprietesAConstruire(new ArrayList<ProprieteAConstruire>());
         }
 
@@ -34,7 +34,7 @@ public class Joueur {
     }
 
     public String getNom() {
-        throw new UnsupportedOperationException();
+        return _nomJoueur;
     }
 
     public void cashRestant(int aL) {
@@ -52,9 +52,15 @@ public class Joueur {
     public int getNbGare() {
         throw new UnsupportedOperationException();
     }
+    public void addCash(int reçu){
+        System.out.println(this.getNom()+"à reçu "+reçu);
+        this.setCash(this.getCash()+reçu);
+    }
 
     public void changerPosition(int aTotalDes) {
-        throw new UnsupportedOperationException();
+        int num=_positionCourante.getNumero()+aTotalDes;
+        if (num>39){num = num-39;this.addCash(200);}
+        this.setPositionCourante(_monopoly.getCases().get(num));
     }
 
     public Carreau getPositionCourante() {
@@ -66,14 +72,7 @@ public class Joueur {
     }
 
     public void setPositionCourante(Carreau aC2) {
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * @return the _nomJoueur
-     */
-    public String getNomJoueur() {
-        return _nomJoueur;
+        _positionCourante=aC2;
     }
 
     /**
