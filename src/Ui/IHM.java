@@ -49,6 +49,10 @@ public class IHM {
             System.out.println("Lancé dés de " + nomJ + " : " + TotDes );
         }
 
+    public void messageAnniversaire() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 
 

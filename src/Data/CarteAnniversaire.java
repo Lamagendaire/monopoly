@@ -39,7 +39,7 @@ public class CarteAnniversaire extends Carte {
        }
         
        J.addCash(montantRecu);
-       J.getMonopoly().getIhm().messageAnniversaire()
+       J.getMonopoly().getIhm().messageAnniversaire();
        
     }
     
