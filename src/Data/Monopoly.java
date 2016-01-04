@@ -55,6 +55,10 @@ public class Monopoly {
                 }
 		
 	}
+        
+        public void tirerCarte() {
+            
+        }
 
 	public Monopoly(String dataFilename){
 		buildGamePlateau(dataFilename);
@@ -106,11 +110,16 @@ public class Monopoly {
                                         CarreauArgent newcarreau = new CarreauArgent(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),"CA");
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
 				}
-				else if(caseType.compareTo("CM") == 0){
-					System.out.println("Case Mouvement :\t" + data.get(i)[2] + "\t* case " + data.get(i)[1]);
-                                        CarreauMouvement newcarreau = new CarreauMouvement(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),"CM");
+				else if(caseType.compareTo("CMD") == 0){
+                                        System.out.println("Case Mouvement Direct :\t" + data.get(i)[2] + "\t* case " + data.get(i)[1]);
+                                        CarreauMouvementDirect newcarreau = new CarreauMouvementDirect(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),"CM");
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
-				}
+                }
+                                else if(caseType.compareTo("CMR") == 0){
+                                        System.out.println("Case Mouvement Relatif :\t" + data.get(i)[2] + "\t* case " + data.get(i)[1]);
+                                        CarreauMouvement newcarreau = new CarreauMouvementRelatif(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),"CM");
+                                        _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
+                                }
                                 else{
 					System.err.println("[buildGamePleateau()] : Type de donnée invalide");}
                                 //_carreaux.put(data.get(i)[1], new Carreau(this,data.get(i)[2],data.get(i)[1]));

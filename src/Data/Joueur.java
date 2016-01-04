@@ -20,7 +20,20 @@ public class Joueur {
            _positionCourante=(_monopoly.getCases().get(1));
            this.setProprietesAConstruire(new ArrayList<ProprieteAConstruire>());
         }
-
+    
+    public void addCompagnie(Compagnie compagnie){
+        _compagnies.add(compagnie);
+    } 
+    
+    public void addGare(Gare gare){
+        _gares.add(gare);
+    }
+    
+    public void addProprietesAConstruire(ProprieteAConstruire prop){
+        _proprietesAConstruire.add(prop);
+    }
+        
+        
     public void payerLoyer(int aL) {
         this.setCash(this.getCash()-aL);
     }
@@ -28,6 +41,7 @@ public class Joueur {
     public void recevoirLoyer(int aL) {
         this.setCash(this.getCash()+aL);
     }
+    
 
     public HashSet<Gare> getLesGares() {
         throw new UnsupportedOperationException();
@@ -46,7 +60,7 @@ public class Joueur {
     }
 
     public void decrementerCash(int aPrix) {
-        throw new UnsupportedOperationException();
+        this.setCash(_cash-aPrix);
     }
 
     public int getNbGare() {

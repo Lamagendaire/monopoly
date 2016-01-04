@@ -8,9 +8,6 @@ public class Gare extends CarreauPropriete {
 
 
 
-	private void construire() {
-		throw new UnsupportedOperationException();
-	}
 
 	public int getLoyer() {
 		throw new UnsupportedOperationException();
@@ -35,6 +32,11 @@ public class Gare extends CarreauPropriete {
     @Override
     public int calculLoyer() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addprop(Joueur j) {
+        j.addGare(this);
     }
 
 }

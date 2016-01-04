@@ -14,7 +14,7 @@ public abstract class CarreauPropriete extends Carreau {
     public void action(Joueur j) {
         
         if(getProprietaire()==null){
-            this.acheterProriete();
+            this.acheterProriete(j);
             
         }else{
             if(j!=this.getProprietaire()){
@@ -26,9 +26,19 @@ public abstract class CarreauPropriete extends Carreau {
 
     }
     
-    //A FAIRE
-    public void acheterProriete(){
-        
+    public abstract void addprop(Joueur j);
+    
+    public void acheterProriete(Joueur j){
+        int cash=j.getCash();
+        if(cash>this.getPrixCarreau()){
+            if(this.getMonopoly().getIhm().Achat(this.getNomCarreau(), cash)){
+                this.setProprietaire(j);
+                String choix=this.getType();
+                this.addprop(j);
+                j.decrementerCash(this.getPrixCarreau());
+                
+        }
+      }
     }
     
     public abstract int calculLoyer();

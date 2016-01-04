@@ -23,6 +23,14 @@ public class IHM {
 		throw new UnsupportedOperationException();
 	}
         
+        public boolean Achat(String nomCarreau, int prix) {
+		throw new UnsupportedOperationException();
+	}
+        
+        public void messageCarreauArgent (int montant) {
+            
+        }
+        
         
         public int demandeNbJoueurs() {
             Scanner sc = new Scanner(System.in);

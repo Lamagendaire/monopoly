@@ -11,5 +11,10 @@ public class Compagnie extends CarreauPropriete {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void addprop(Joueur j) {
+        j.addCompagnie(this);
+    }
+
 
 }
