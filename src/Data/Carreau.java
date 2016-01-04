@@ -17,6 +17,10 @@ public abstract class Carreau {
             this.setType(_type);
         }
         
+        protected void construire(){
+            //A FAIRE
+        }
+        
 
 	public int getNumero() {
 		return this._numero;
@@ -26,7 +30,7 @@ public abstract class Carreau {
 		return this._nomCarreau;
 	}
         
-        public abstract void action();
+        public abstract void action(Joueur j);
             
         
             

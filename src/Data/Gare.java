@@ -2,25 +2,11 @@ package Data;
 
 public class Gare extends CarreauPropriete {
 
-    public Gare(Monopoly _monopoly, String _nomCarreau, int _numero,String _type) {
-        super(_monopoly, _nomCarreau,_type, _numero);
+    public Gare(Monopoly _monopoly, String _nomCarreau, int _numero,int _prixCarreau,String _type) {
+        super(_monopoly, _nomCarreau,_type, _numero,_prixCarreau);
     }
 
-	public void action(Joueur aJ) {
-		throw new UnsupportedOperationException();
-	}
 
-	private int calculLoyer() {
-		throw new UnsupportedOperationException();
-	}
-
-	private Joueur getProprietaire() {
-		throw new UnsupportedOperationException();
-	}
-
-	private void acheterPropriete() {
-		throw new UnsupportedOperationException();
-	}
 
 	private void construire() {
 		throw new UnsupportedOperationException();
@@ -45,5 +31,10 @@ public class Gare extends CarreauPropriete {
 	public void setProprietaire(Joueur aJ) {
 		throw new UnsupportedOperationException();
 	}
+
+    @Override
+    public int calculLoyer() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

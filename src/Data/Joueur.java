@@ -22,11 +22,11 @@ public class Joueur {
         }
 
     public void payerLoyer(int aL) {
-        throw new UnsupportedOperationException();
+        this.setCash(this.getCash()-aL);
     }
 
     public void recevoirLoyer(int aL) {
-        throw new UnsupportedOperationException();
+        this.setCash(this.getCash()+aL);
     }
 
     public HashSet<Gare> getLesGares() {

@@ -22,7 +22,7 @@ public class Monopoly {
         
 	public void jouerUnCoup(Joueur aJ) {
                 lancerDésAvancer(aJ);
-                    aJ.getPositionCourante().action();
+                    aJ.getPositionCourante().action(aJ);
                     
                 
 	}
@@ -76,22 +76,23 @@ public class Monopoly {
 				if(caseType.compareTo("P") == 0){
 					System.out.println("Propriété :\t\t" + data.get(i)[2] + "\t* case " + data.get(i)[1]);
                                         Groupe groupeChoisie=null;
+                                        //Recherche de groupe
                                         for(Groupe group: groupes){
                                             if(data.get(i)[3].equals(group.getCouleur().toString())){groupeChoisie=group;}
                                         }
                                         
-                                        ProprieteAConstruire newcarreau = new ProprieteAConstruire(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),"P",groupeChoisie);
+                                        ProprieteAConstruire newcarreau = new ProprieteAConstruire(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),Integer.parseInt(data.get(i)[4]),"P",groupeChoisie);
                                         groupeChoisie.addPropriete(newcarreau);
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
 				}
 				else if(caseType.compareTo("G") == 0){
 					System.out.println("Gare :\t\t\t" + data.get(i)[2] + "\t* case " + data.get(i)[1]);
-                                        Gare newcarreau = new Gare(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),"G");
+                                        Gare newcarreau = new Gare(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),Integer.parseInt(data.get(i)[3]),"G");
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
 				}
 				else if(caseType.compareTo("C") == 0){
 					System.out.println("Compagnie :\t\t" + data.get(i)[2] + "\t* case " + data.get(i)[1]);
-                                        Compagnie newcarreau = new Compagnie(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),"C");
+                                        Compagnie newcarreau = new Compagnie(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),Integer.parseInt(data.get(i)[3]),"C");
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
 				}
 				else if(caseType.compareTo("CT") == 0){

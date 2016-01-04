@@ -9,8 +9,8 @@ public class ProprieteAConstruire extends CarreauPropriete {
 	private int _tabLoyers;
 	private Groupe _groupePropriete;
 
-    public ProprieteAConstruire(Monopoly _monopoly, String _nomCarreau, int _numero,String _type,Groupe groupe) {
-        super(_monopoly, _nomCarreau,_type, _numero);
+    public ProprieteAConstruire(Monopoly _monopoly, String _nomCarreau, int _numero,int _prixCarreau,String _type,Groupe groupe) {
+        super(_monopoly, _nomCarreau,_type, _numero,_prixCarreau );
         this.setGroupePropriete(groupe);
         
     }
@@ -111,6 +111,11 @@ public class ProprieteAConstruire extends CarreauPropriete {
      */
     private void setGroupePropriete(Groupe _groupePropriete) {
         this._groupePropriete = _groupePropriete;
+    }
+
+    @Override
+    public int calculLoyer() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
