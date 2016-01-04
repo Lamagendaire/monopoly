@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class IHM {
+    
+    
+        public IHM(){}
 	
     
 
@@ -24,7 +27,7 @@ public class IHM {
 	}
         
         public boolean Achat(String nomCarreau, int prix) {
-		throw new UnsupportedOperationException();
+		return false;
 	}
         
         public void messageCarreauArgent (int montant) {
