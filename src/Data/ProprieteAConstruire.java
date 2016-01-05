@@ -3,10 +3,9 @@ package Data;
 public class ProprieteAConstruire extends CarreauPropriete {
 	private int _nbMaisons = 0;
 	private int _nbHotels = 0;
-	private java.util.ArrayList<Integer> _loyerMaison;
-	private Object _nbMaison;
-	private Object _prixMaison;
-	private int _tabLoyers;
+        private int _prixMaison=0;
+        private int _prixHotel=0;
+	private int [] _tabLoyers= new int [5];
 	private Groupe _groupePropriete;
 
     public ProprieteAConstruire(Monopoly _monopoly, String _nomCarreau, int _numero,int _prixCarreau,String _type,Groupe groupe) {
@@ -29,33 +28,6 @@ public class ProprieteAConstruire extends CarreauPropriete {
         return _nbHotels;
     }
 
-    /**
-     * @return the _loyerMaison
-     */
-    public java.util.ArrayList<Integer> getLoyerMaison() {
-        return _loyerMaison;
-    }
-
-    /**
-     * @return the _nbMaison
-     */
-    public Object getNbMaison() {
-        return _nbMaison;
-    }
-
-    /**
-     * @return the _prixMaison
-     */
-    public Object getPrixMaison() {
-        return _prixMaison;
-    }
-
-    /**
-     * @return the _tabLoyers
-     */
-    public int getTabLoyers() {
-        return _tabLoyers;
-    }
 
     /**
      * @return the _groupePropriete
@@ -78,33 +50,6 @@ public class ProprieteAConstruire extends CarreauPropriete {
         this._nbHotels = _nbHotels;
     }
 
-    /**
-     * @param _loyerMaison the _loyerMaison to set
-     */
-    private void setLoyerMaison(java.util.ArrayList<Integer> _loyerMaison) {
-        this._loyerMaison = _loyerMaison;
-    }
-
-    /**
-     * @param _nbMaison the _nbMaison to set
-     */
-    private void setNbMaison(Object _nbMaison) {
-        this._nbMaison = _nbMaison;
-    }
-
-    /**
-     * @param _prixMaison the _prixMaison to set
-     */
-    private void setPrixMaison(Object _prixMaison) {
-        this._prixMaison = _prixMaison;
-    }
-
-    /**
-     * @param _tabLoyers the _tabLoyers to set
-     */
-    private void setTabLoyers(int _tabLoyers) {
-        this._tabLoyers = _tabLoyers;
-    }
 
     /**
      * @param _groupePropriete the _groupePropriete to set
@@ -114,13 +59,71 @@ public class ProprieteAConstruire extends CarreauPropriete {
     }
 
     @Override
-    public int calculLoyer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int calculLoyer(Joueur jp,Joueur j) {
+        int prix,nbProp=0;
+        for(ProprieteAConstruire prop: jp.getProprietesAConstruire()){
+            if (prop.getGroupePropriete().equals(this.getGroupePropriete())){nbProp++;}
+        }
+        if(_nbMaisons==0 && this.getGroupePropriete().getProprietes().size()==nbProp){
+            prix= 2*_tabLoyers[0];
+        }else if(_nbHotels==1){
+            prix= _tabLoyers[5];
+        }
+        else{
+            prix= _tabLoyers[_nbMaisons];
+        }
+        this.getMonopoly().getIhm().messagePayerLoyer(jp, j,prix);
+        return prix;
+        
+        
+        
     }
 
     @Override
     public void addprop(Joueur j) {
         j.addProprietesAConstruire(this);
+    }
+
+    /**
+     * @return the _tabLoyers
+     */
+    public int[] getTabLoyers() {
+        return _tabLoyers;
+    }
+
+    /**
+     * @param _tabLoyers the _tabLoyers to set
+     */
+    public void setTabLoyers(int[] _tabLoyers) {
+        this._tabLoyers = _tabLoyers;
+    }
+
+    /**
+     * @return the _prixMaison
+     */
+    public int getPrixMaison() {
+        return _prixMaison;
+    }
+
+    /**
+     * @param _prixMaison the _prixMaison to set
+     */
+    public void setPrixMaison(int _prixMaison) {
+        this._prixMaison = _prixMaison;
+    }
+
+    /**
+     * @return the _prixHotel
+     */
+    public int getPrixHotel() {
+        return _prixHotel;
+    }
+
+    /**
+     * @param _prixHotel the _prixHotel to set
+     */
+    public void setPrixHotel(int _prixHotel) {
+        this._prixHotel = _prixHotel;
     }
 
 

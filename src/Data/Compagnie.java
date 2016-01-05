@@ -7,9 +7,27 @@ public class Compagnie extends CarreauPropriete {
     }
 
     @Override
-    public int calculLoyer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int calculLoyer(Joueur jp,Joueur j) {
+        int nbComp= jp.getCompagnies().size();
+        String nom = jp.getNom();
+        int prix=this.montantLoyer(j,nbComp);
+        this.getMonopoly().getIhm().messagePayerLoyer(jp,j,prix);
+        return prix;
     }
+    public int montantLoyer(Joueur j,int aNb) {
+                int totalDes=j.getTotaldes();
+		if(totalDes==0){
+                    int mem=this.getMonopoly().getCompteDoubleDé();
+                    totalDes=this.getMonopoly().lancerDes();
+                    this.getMonopoly().setCompteDoubleDé(mem);
+                }
+                int prix=0;
+                switch(aNb){
+                    case(1): {prix=totalDes*4;}
+                    case(2): {prix=totalDes*10;}
+                }
+                return (prix);
+	}
 
     @Override
     public void addprop(Joueur j) {

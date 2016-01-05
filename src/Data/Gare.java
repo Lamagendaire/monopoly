@@ -6,32 +6,18 @@ public class Gare extends CarreauPropriete {
         super(_monopoly, _nomCarreau,_type, _numero,_prixCarreau);
     }
 
-
-
-
-	public int getLoyer() {
-		throw new UnsupportedOperationException();
+	public int montantLoyer(int aNb) {
+		return(25*aNb);
 	}
 
-	public int montantLoyer(int aNb, int aL) {
-		throw new UnsupportedOperationException();
-	}
-
-	public int getPrix() {
-		throw new UnsupportedOperationException();
-	}
-
-	public String getNom() {
-		throw new UnsupportedOperationException();
-	}
-
-	public void setProprietaire(Joueur aJ) {
-		throw new UnsupportedOperationException();
-	}
 
     @Override
-    public int calculLoyer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int calculLoyer(Joueur jp,Joueur j) {
+        int nbGare= jp.getGares().size();
+        String nom = jp.getNom();
+        int prix=this.montantLoyer(nbGare);
+        this.getMonopoly().getIhm().messagePayerLoyer(jp,j,prix);
+        return prix;
     }
 
     @Override

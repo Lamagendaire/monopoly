@@ -19,6 +19,8 @@ public class Monopoly {
 	public IHM _ihm;
 	private HashMap<Integer,Carreau> _carreaux= new HashMap();
 	private LinkedHashMap<Integer,Joueur> _joueurs = new LinkedHashMap<Integer,Joueur>();
+        private LinkedList<Carte> _cartesChance = new LinkedList<Carte>();
+        private LinkedList<Carte> _cartesCommunaute = new LinkedList<Carte>();
         
 	public void jouerUnCoup(Joueur aJ) {
                 lancerDésAvancer(aJ);
@@ -29,6 +31,7 @@ public class Monopoly {
 
 	private void lancerDésAvancer(Joueur j) {
             int totalDés = lancerDes();
+            j.setTotaldes(totalDés);
             if (this.getCompteDoubleDé()<3){
                 //_ihm.messageJoueurCourant(j, totalDés);
                 j.changerPosition(totalDés);
@@ -56,7 +59,23 @@ public class Monopoly {
 		
 	}
         
-        public void tirerCarte() {
+public void tirerCarte(Joueur j) {
+            
+            // On peut aussi utiliser le numéro du carreau pour identifier la position du joueur.
+            
+            if(j.getPositionCourante().getNomCarreau()=="Caisse de communauté") {
+                
+                _cartesCommunaute.element().action(j);
+                _cartesCommunaute.offerLast(_cartesCommunaute.element());
+                
+            }
+            
+            else if (j.getPositionCourante().getNomCarreau()=="Chance") {
+                
+                _cartesChance.element().action(j);
+                _cartesChance.offerLast(_cartesChance.element());
+                
+            }
             
         }
 
@@ -87,6 +106,10 @@ public class Monopoly {
                                         }
                                         
                                         ProprieteAConstruire newcarreau = new ProprieteAConstruire(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),Integer.parseInt(data.get(i)[4]),"P",groupeChoisie);
+                                        int tab []= {Integer.parseInt(data.get(i)[5]),Integer.parseInt(data.get(i)[6]),Integer.parseInt(data.get(i)[7]),Integer.parseInt(data.get(i)[8],Integer.parseInt(data.get(i)[9],Integer.parseInt(data.get(i)[10])))};
+                                        newcarreau.setPrixMaison(Integer.parseInt(data.get(i)[11]));
+                                        newcarreau.setPrixHotel(Integer.parseInt(data.get(i)[12]));
+                                        newcarreau.setTabLoyers(tab);
                                         groupeChoisie.addPropriete(newcarreau);
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
 				}
@@ -123,6 +146,7 @@ public class Monopoly {
 			}
 			
 		} 
+                
 		catch(FileNotFoundException e){
 			System.err.println("[buildGamePlateau()] : Fichier non trouvé!");
 		}
@@ -132,6 +156,7 @@ public class Monopoly {
 		catch(IOException e){
 			System.err.println("[buildGamePlateau()] : Erreur de lecture du fichier!");
 		}
+                
 	}
 	
 	private ArrayList<String[]> readDataFile(String filename, String token) throws FileNotFoundException, IOException
@@ -299,6 +324,13 @@ public class Monopoly {
      */
     public void setJoueurs(LinkedHashMap<Integer,Joueur> _joueurs) {
         this._joueurs = _joueurs;
+    }
+    void decrementerMaison() {
+        _nbMaisons = _nbMaisons - 1;
+    }
+
+    void decrementerHotel() {
+        _nbHotels = _nbHotels - 1;
     }
         
 }

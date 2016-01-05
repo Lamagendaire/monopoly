@@ -25,6 +25,12 @@ public class IHM {
 	public void messageEtatJoueur(Joueur aJ) {
 		throw new UnsupportedOperationException();
 	}
+        public void messagePayerLoyer(Joueur proprio,Joueur payeur, int montant) {
+		throw new UnsupportedOperationException();
+	}
+        public void messagePayerCompagnie(Joueur proprio,Joueur payeur, int montant,int des) {
+		throw new UnsupportedOperationException();
+	}
         
         public boolean Achat(String nomCarreau, int prix) {
 		return false;

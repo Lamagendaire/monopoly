@@ -23,6 +23,18 @@ public class CarteMouvementDirect extends CarteMouvement {
     public void action(Joueur J) {
         
         
+        if (super.isAvancer()) {
+            
+            if (this.getNumero() > J.getPositionCourante().getNumero()) {
+                J.setPositionCourante(J.getMonopoly().getCases().get(numero));
+            }
+            else {
+                J.addCash(200);
+                J.setPositionCourante(J.getMonopoly().getCases().get(numero));
+                
+            }
+        }
+        J.setPositionCourante(J.getMonopoly().getCases().get(numero));
         
     }
     

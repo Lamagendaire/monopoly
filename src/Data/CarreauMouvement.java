@@ -6,8 +6,11 @@ public class CarreauMouvement extends CarreauAction {
         super(_monopoly, _nomCarreau, _numero, _type);
     }
 
+ 
     @Override
     public void action(Joueur j) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(Carreau pris: this.getMonopoly().getCases().values()){
+                    if(pris.getNomCarreau().equals("Simple Visite / En Prison")){j.setPositionCourante(pris);}
+                }
     }
 }

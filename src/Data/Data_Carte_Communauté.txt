@@ -1,0 +1,16 @@
+CSP,1,Vous êtes libéré de prison.Cette carte peut être conservée jusqu'à ce qu'elle soit utilisée
+CA,2,Payez une amende de 10€
+CAN,3,C'est votre anniversaire.Chaque joueur doit vous donner 10€,10
+CA,4,Erreur de la banque en votre faveur.Recevez 200€,200
+CMD,5,Retournez à Belleville,2
+CA,6,Payez la note du médecin:50€,50
+CA,7,Les contributions vous remboursent la somme de 20€,20
+CA,8,Payez à l'hôpital 100€,100
+CA,9,vous héritez:100€,100
+CMD,10,Allez en prison.Avancez tout droit en prison.Ne passez pas par la case Départ.Ne revevez pas 200€
+CA,11,Payez votre Police d'Assurance:50€,50
+CA,12,La vente de votre stock vous rapporte:50€,50
+CMD,13,Aancez jusqu'à la case Départ,1
+CA,14,Recevez votre inérêt sur l'emprunt à 7%:25€,25
+CA,15,Recevez votre revenu annuel:100€,100
+CA,16,Vous avez gagné le deuxième prix de beauté:revevez 10€,10

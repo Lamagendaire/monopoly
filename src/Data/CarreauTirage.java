@@ -8,7 +8,7 @@ public class CarreauTirage extends CarreauAction {
 
     @Override
     public void action(Joueur j) {
-        j.getMonopoly().tirerCarte();
+        j.getMonopoly().tirerCarte(j);
     }
 }
 
