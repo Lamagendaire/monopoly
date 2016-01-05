@@ -1,12 +1,14 @@
-package Data;
-import Data.Carreau;
-import Data.Joueur;
+package Jeu;
+import Jeu.Carreau;
+import Jeu.Joueur;
 import Ui.IHM;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -16,7 +18,7 @@ public class Monopoly {
 	private int _nbHotels = 12;
         private boolean _doubleDé=true;
         private int _compteDoubleDé=0;
-	public IHM _ihm;
+	public IHM _ihm= new IHM();
 	private HashMap<Integer,Carreau> _carreaux= new HashMap();
 	private LinkedHashMap<Integer,Joueur> _joueurs = new LinkedHashMap<Integer,Joueur>();
         private LinkedList<Carte> _cartesChance = new LinkedList<Carte>();
@@ -79,19 +81,99 @@ public void tirerCarte(Joueur j) {
             
         }
 
-	public Monopoly(String dataFilename){
+	public Monopoly(String dataFilename, String dataChance,String dataComm){
 		buildGamePlateau(dataFilename);
+                this.buildGameCardsChance(dataChance);
+                this.buildGameCardsComm(dataComm);
 	}
+        
+        
+        private void buildGameCardsChance(String dataFilename) {
+          try{  
+              ArrayList<String[]> data = readDataFile(dataFilename, ",");
+              for(int i=0; i<data.size(); ++i){
+				String caseType = data.get(i)[0];
+                                if(caseType.compareTo("CSP") == 0){
+                                    CarteSortiePrison newCard= new CarteSortiePrison(Integer.parseInt(data.get(i)[1]),data.get(i)[2]);
+                                    _cartesChance.add(newCard);
+                                }else if(caseType.compareTo("CMR") == 0){
+                                    CarteMouvementRelatif newCard= new CarteMouvementRelatif(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Boolean.parseBoolean(data.get(i)[4]),Integer.parseInt(data.get(i)[3]));
+                                    _cartesChance.add(newCard);
+                                }else if(caseType.compareTo("CMD") == 0){
+                                    CarteMouvementDirect newCard= new CarteMouvementDirect(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Boolean.parseBoolean(data.get(i)[4]),Integer.parseInt(data.get(i)[3]));
+                                    _cartesChance.add(newCard);
+                                }
+                                else if(caseType.compareTo("CR") == 0){
+                                    CarteReparation newCard= new CarteReparation(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[3]),Integer.parseInt(data.get(i)[4]));
+                                    _cartesChance.add(newCard);}
+                                else if(caseType.compareTo("CA") == 0){
+                                    CarteArgent newCard= new CarteArgent(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[3]));
+                                    _cartesChance.add(newCard);}
+                                else{
+				    System.err.println("[buildGamePleateau()] : Type de donnée invalide");}
+              }
+
+             Collections.shuffle(_cartesChance); 
+              
+          }
+            catch(FileNotFoundException e){
+			System.err.println("[buildGamePlateau()] : Fichier non trouvé!");
+		}
+            catch(NullPointerException e){
+			System.err.println("[buildGamePlateau()] : Couleur du carreau non trouvé!");
+                }
+            catch(IOException e){
+			System.err.println("[buildGamePlateau()] : Erreur de lecture du fichier!");
+		}
+          
+        }
+        private void buildGameCardsComm(String dataFilename){
+                      try{  
+              ArrayList<String[]> data = readDataFile(dataFilename, ",");
+              for(int i=0; i<data.size(); ++i){
+				String caseType = data.get(i)[0];
+                                if(caseType.compareTo("CSP") == 0){
+                                    CarteSortiePrison newCard= new CarteSortiePrison(Integer.parseInt(data.get(i)[1]),data.get(i)[2]);
+                                    _cartesCommunaute.add(newCard);
+                                }else if(caseType.compareTo("CA") == 0){
+                                    CarteArgent newCard= new CarteArgent(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[3]));
+                                    _cartesCommunaute.add(newCard);
+                                }else if(caseType.compareTo("CMD") == 0){
+                                    CarteMouvementDirect newCard= new CarteMouvementDirect(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Boolean.parseBoolean(data.get(i)[4]),Integer.parseInt(data.get(i)[3]));
+                                    _cartesCommunaute.add(newCard);
+                                }
+                                else if(caseType.compareTo("CAN") == 0){
+                                    CarteAnniversaire newCard= new CarteAnniversaire(Integer.parseInt(data.get(i)[1]),data.get(i)[2],Integer.parseInt(data.get(i)[3]));
+                                    _cartesCommunaute.add(newCard);}
+                                else{
+                                    System.err.println("[buildGamePleateau()] : Type de donnée invalide");}
+              }
+              
+    
+          }
+            catch(FileNotFoundException e){
+			System.err.println("[buildGamePlateau()] : Fichier non trouvé!");
+		}
+            catch(NullPointerException e){
+			System.err.println("[buildGamePlateau()] : Couleur du carreau non trouvé!");
+                }
+            catch(IOException e){
+			System.err.println("[buildGamePlateau()] : Erreur de lecture du fichier!");
+		}
+                      
+        Collections.shuffle(_cartesCommunaute); 
+        }
+        
+        
 	
-	private void buildGamePlateau(String dataFilename)
-	{
+	private void buildGamePlateau(String dataFilename){
+            
             ArrayList<Groupe> groupes = new ArrayList<Groupe>();
             for(CouleurPropriete coul: CouleurPropriete.values()){
                 groupes.add(new Groupe(coul));
                 System.out.println(coul.toString("* groupe créé *"));
                 System.out.println("");
             }
-            _ihm= new IHM();
 		try{
 			ArrayList<String[]> data = readDataFile(dataFilename, ",");
 			//TODO: create cases instead of displaying
@@ -106,10 +188,13 @@ public void tirerCarte(Joueur j) {
                                         }
                                         
                                         ProprieteAConstruire newcarreau = new ProprieteAConstruire(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),Integer.parseInt(data.get(i)[4]),"P",groupeChoisie);
-                                        int tab []= {Integer.parseInt(data.get(i)[5]),Integer.parseInt(data.get(i)[6]),Integer.parseInt(data.get(i)[7]),Integer.parseInt(data.get(i)[8],Integer.parseInt(data.get(i)[9],Integer.parseInt(data.get(i)[10])))};
+                                        int tab[]= new int[5];
+                                        for (int z=5;z<10;z++){
+                                            tab[z-5]=Integer.parseInt(data.get(i)[z]);
+                                        }
                                         newcarreau.setPrixMaison(Integer.parseInt(data.get(i)[11]));
                                         newcarreau.setPrixHotel(Integer.parseInt(data.get(i)[12]));
-                                        newcarreau.setTabLoyers(tab);
+                                        //newcarreau.setTabLoyers(tab);
                                         groupeChoisie.addPropriete(newcarreau);
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
 				}
@@ -141,7 +226,7 @@ public void tirerCarte(Joueur j) {
                                     }
                                 else{
 					System.err.println("[buildGamePleateau()] : Type de donnée invalide");}
-                                //_carreaux.put(data.get(i)[1], new Carreau(this,data.get(i)[2],data.get(i)[1]));
+                               
                                 
 			}
 			

@@ -1,4 +1,4 @@
-package Data;
+package Jeu;
 
 import java.util.ArrayList;
 import java.util.HashSet;

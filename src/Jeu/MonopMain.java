@@ -6,7 +6,6 @@
 
 package Jeu;
 
-import Data.*;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 
@@ -22,24 +21,25 @@ public class MonopMain {
     public static void main(String[] args) {
         
         //_________________________INITIALISATION_______________________________
-        Monopoly monop= new Monopoly("/users/info/etu-s2/defoursr/projet/Monopoly/src/Data/data.txt");
+        Monopoly monop= new Monopoly("/users/info/etu-s2/defoursr/projet/Monopoly/src/Data/data.txt","/users/info/etu-s2/defoursr/projet/Monopoly/src/Data/data-carte-Chance.txt","/users/info/etu-s2/defoursr/projet/Monopoly/src/Data/data-Carte-Communaute.txt");
+        monop.initialiserPartie();
         //______________________________________________________________________
         
         
         //________________________TEST__________________________________________
-        Joueur j1 = new Joueur("j1", monop);
+        /*Joueur j1 = new Joueur("j1", monop);
         Joueur j2 = new Joueur("j2", monop);
         Joueur j3 = new Joueur("j3", monop);
         LinkedHashMap<Integer,Joueur> joueurs = new LinkedHashMap<Integer,Joueur>();
         joueurs.put(1, j1);
         joueurs.put(2, j2);
         joueurs.put(3, j3);
-        monop.setJoueurs(joueurs);
+        monop.setJoueurs(joueurs);*/
         
         
         
         
-        boolean partie= true;
+        boolean partie= false;
         if (partie){
         //________________________LA PARTIE COMMENCE____________________________
         

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Data;
+package Jeu;
 
 /**
  *
@@ -19,12 +19,7 @@ public class CarteMouvementRelatif extends CarteMouvement {
         this.setNbCases(nbCases);
     }
     
-    @Override
-    public void action(Joueur J) {
-        
-        // a remplir
-        
-    }
+@Override public void action(Joueur J) { J.changerPosition(nbCases); }
     
     
     /**

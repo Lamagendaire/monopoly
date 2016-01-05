@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Data;
+package Jeu;
 
 /**
  *
@@ -22,12 +22,14 @@ public class CarteReparation extends Carte {
     }
 
     
-    @Override
-    public void action(Joueur J) {
-        
-        // a remplir
-        
-    }
+ @Override public void action(Joueur J) {
+     for (ProprieteAConstruire PC : J.getProprietesAConstruire()) {
+         if (PC.getNbMaisons() < 4) {
+             J.addCash(montantMaison*PC.getNbMaisons()); }
+         else { J.addCash(montantHotel); 
+         } 
+     } 
+ }
     
     
     

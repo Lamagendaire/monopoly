@@ -1,4 +1,4 @@
-package Data;
+package Jeu;
 
 public class ProprieteAConstruire extends CarreauPropriete {
 	private int _nbMaisons = 0;

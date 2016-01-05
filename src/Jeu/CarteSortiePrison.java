@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Data;
+package Jeu;
 
 /**
  *
@@ -16,14 +16,7 @@ public class CarteSortiePrison extends Carte {
         super(num,txt);
     }
     
-    @Override
-    public void action(Joueur J) {
-        // a remplir
-        
-        
-        
-        
-    }
+@Override public void action(Joueur J) { J.addCartesPrison(); }
     
     
 }

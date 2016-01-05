@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Data;
+package Jeu;
 
 import java.util.HashMap;
 
@@ -39,7 +39,7 @@ public class CarteAnniversaire extends Carte {
        }
         
        J.addCash(montantRecu);
-       J.getMonopoly().getIhm().messageAnniversaire();
+       J.getMonopoly().getIhm().messageAnniversaire(montantRecu);
        
     }
     

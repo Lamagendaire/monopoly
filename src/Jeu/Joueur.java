@@ -1,4 +1,4 @@
-package Data;
+package Jeu;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -251,5 +251,9 @@ public class Joueur {
      */
     private void setCartesPrison(int cartesPrison) {
         this.cartesPrison = cartesPrison;
+    }
+    
+    public  void addCartesPrison(){
+        cartesPrison++;
     }
 }
