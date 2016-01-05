@@ -1,5 +1,7 @@
 package Data;
 
+import java.util.HashSet;
+
 public abstract class Carreau {
 	private int _numero;
 	private String _nomCarreau;
@@ -17,8 +19,81 @@ public abstract class Carreau {
             this.setType(_type);
         }
         
-        protected void construire(){
+        protected void construire(Joueur J){
             //A FAIRE
+            
+            int nbMaisonsTotal = this.getMonopoly().getNbMaisons();
+            int nbHotelsTotal = this.getMonopoly().getNbHotels();
+            boolean achatMaison;
+            
+            if (nbMaisonsTotal > 0 && nbHotelsTotal > 0 && J.getPositionCourante() != this.getMonopoly().getCases().get(11) ) {
+                
+                HashSet<ProprieteAConstruire> pConstructibles = new HashSet<>();
+                
+                pConstructibles = J.propriétéConstructible();
+                
+                ProprieteAConstruire pacChoisie = this.getMonopoly().getIhm().choixProprieteAConstruire(pConstructibles);
+                
+                int prixMaison = pacChoisie.getPrixMaison();
+                
+                int cash = J.getCash();
+                
+                if (cash >= prixMaison) {
+                    
+                    int nbMaisons = pacChoisie.getNbMaisons();
+                    
+                    if (nbMaisons >= 0 && nbMaisons <= 3) {
+                        
+                        if (nbMaisonsTotal > 0 ) {
+                            
+                            achatMaison = this.getMonopoly().getIhm().demandeConstructionMaison();
+                            
+                            if (achatMaison) {
+                                
+                                int prix = pacChoisie.getPrixMaison();
+                                J.decrementerCash(prix);
+                                pacChoisie.addMaison();
+                                
+                                this.getMonopoly().decrementerMaison();
+                            }
+                            
+                            
+                        }
+                        
+                        
+                        
+                        
+                        
+                    }
+                    
+                    else {
+                        
+                        if (nbHotelsTotal > 0 ) {
+                            
+                            boolean achatHotel;
+                            achatHotel = this.getMonopoly().getIhm().demandeConstructionHotel();
+                            
+                            if (achatHotel) {
+                                
+                                int prix = pacChoisie.getPrixMaison();
+                                J.decrementerCash(prix);
+                                pacChoisie.addMaison();
+                                this.getMonopoly().decrementerHotel();
+                                
+                            }
+                            
+                            
+                        }
+                        
+                    }
+                    
+                    
+                    
+                }
+                
+            }
+            
+            
         }
         
 
@@ -77,4 +152,7 @@ public abstract class Carreau {
     private void setType(String _type) {
         this._type = _type;
     }
+    
+    
+    
 }

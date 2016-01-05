@@ -13,6 +13,7 @@ public class ProprieteAConstruire extends CarreauPropriete {
         this.setGroupePropriete(groupe);
         
     }
+    void addMaison() { _nbMaisons = _nbMaisons + 1; }
 
     /**
      * @return the _nbMaisons

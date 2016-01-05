@@ -1,10 +1,11 @@
 package Ui;
 
-import Data.Carreau;
 import Data.*;
+import Data.Carreau;
 import Data.Monopoly;
 import Data.ProprieteAConstruire;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class IHM {
@@ -39,6 +40,13 @@ public class IHM {
         public void messageCarreauArgent (int montant) {
             
         }
+        public boolean demandeConstructionMaison() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean demandeConstructionHotel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
         
         
         public int demandeNbJoueurs() {
@@ -47,6 +55,9 @@ public class IHM {
             return sc.nextInt();
             
         }
+        public ProprieteAConstruire choixProprieteAConstruire(HashSet<ProprieteAConstruire> pConstructibles) { 
+            throw new UnsupportedOperationException("Not supported yet.");
+        } //To change body of generated methods, choose Tools | Templates. }
         
         public String demandeNomJoueur(int i) {
             Scanner sc = new Scanner(System.in);
