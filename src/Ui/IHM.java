@@ -25,16 +25,17 @@ public class IHM {
 
 	public void messageEtatJoueur(Joueur aJ) {
             
-            System.out.println("Infos sur " + aJ.getNom() + " : ");
-            System.out.println("---------------------------------");
-            System.out.println("Cash : " + aJ.getCash());
+            System.out.println(CouleurPropriete.mauve.toString("---------------------------------"));
+            System.out.println(CouleurPropriete.mauve.toString("Infos sur " + aJ.getNom() + " : "));
+            
+            System.out.println(CouleurPropriete.vert.toString("Cash : " + aJ.getCash()));
             System.out.println("Propriétés possédées : ");
             for (ProprieteAConstruire pac : aJ.getProprietesAConstruire()) {
                 
-                System.out.println(pac.getNomCarreau());
-                System.out.println("Groupe : " + pac.getGroupePropriete().toString());
+                System.out.print(pac.getNomCarreau());
+                System.out.print("| Groupe : " + pac.getGroupePropriete().getCouleur().toString(pac.getGroupePropriete().getCouleur().toString()));
                 if (pac.getNbMaisons() < 5) {
-                System.out.println("Nombre de maisons : " + pac.getNbMaisons());
+                System.out.println("| Nombre de maisons : " + pac.getNbMaisons());
                 }
                 else {
                 System.out.println("Un hôtel");
@@ -67,7 +68,7 @@ public class IHM {
 	}
         public void messagePayerLoyer(Joueur proprio,Joueur payeur, int montant) {
 		
-            System.out.println(payeur.getNom() + " paye un montant de " + montant + " à " + proprio.getNom() + "pour être passé sur " + payeur.getPositionCourante().getNomCarreau() );
+            System.out.println(CouleurPropriete.rouge.toString(payeur.getNom() + " paye un montant de " + montant + " à " + proprio.getNom() + "pour être passé sur " + payeur.getPositionCourante().getNomCarreau() ));
             
             
 	}
@@ -80,21 +81,22 @@ public class IHM {
         public boolean Achat(String nomCarreau, int prix) {
             
             Scanner sc = new Scanner(System.in);
-            System.out.println("Voulez-vous acheter "+ nomCarreau + " ? y/n");
-            String rep = sc.nextLine();
-            
             boolean ok = false;
             boolean rep2 = false;
         
             while (ok == false) {
+            System.out.println("Voulez-vous acheter "+ nomCarreau + " ? y/n");
+            String rep = sc.nextLine();
+            
+            
  
-             if (rep=="y") {
+             if ("y".equals(rep)) {
             
             ok = true;
             rep2 = true;
             
             }
-            else if (rep == "n") {
+            else if ("n".equals(rep)) {
             
             ok = true;
             rep2 = false;

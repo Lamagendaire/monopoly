@@ -61,7 +61,8 @@ public class ProprieteAConstruire extends CarreauPropriete {
 
     @Override
     public int calculLoyer(Joueur jp,Joueur j) {
-        int prix,nbProp=0;
+        int nbProp=0;
+        int prix=1;
         for(ProprieteAConstruire prop: jp.getProprietesAConstruire()){
             if (prop.getGroupePropriete().equals(this.getGroupePropriete())){nbProp++;}
         }

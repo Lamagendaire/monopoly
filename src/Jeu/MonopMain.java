@@ -39,7 +39,7 @@ public class MonopMain {
         
         
         
-        boolean partie= false;
+        boolean partie= true;
         if (partie){
         //________________________LA PARTIE COMMENCE____________________________
         
@@ -51,6 +51,7 @@ public class MonopMain {
                 monop.setCompteDoubleDé(0);
                 //temps que le joueur fait des doubles sans aller en prison
                 while(monop.isDoubleDé()){
+                    monop.getIhm().messageEtatJoueur(j);
                     System.out.print("joueur " + j.getNom()+ " : "+j.getPositionCourante().getNumero()+"  "+j.getPositionCourante().getNomCarreau() );
                     monop.jouerUnCoup(j);
                     System.out.println("    => "+j.getPositionCourante().getNumero()+"  "+j.getPositionCourante().getNomCarreau() );

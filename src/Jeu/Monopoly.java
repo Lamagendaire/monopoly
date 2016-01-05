@@ -26,7 +26,7 @@ public class Monopoly {
         
 	public void jouerUnCoup(Joueur aJ) {
                 lancerDésAvancer(aJ);
-                    //aJ.getPositionCourante().action(aJ);
+                    aJ.getPositionCourante().action(aJ);
                     
                 
 	}
@@ -194,7 +194,7 @@ public void tirerCarte(Joueur j) {
                                         }
                                         newcarreau.setPrixMaison(Integer.parseInt(data.get(i)[11]));
                                         newcarreau.setPrixHotel(Integer.parseInt(data.get(i)[12]));
-                                        //newcarreau.setTabLoyers(tab);
+                                        newcarreau.setTabLoyers(tab);
                                         groupeChoisie.addPropriete(newcarreau);
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
 				}
@@ -304,7 +304,7 @@ public void tirerCarte(Joueur j) {
            tabScores = new int [nbjoueurs];
             
             for (int i = 0; i < nbjoueurs; i++) {
-                String nomJoueur = getIhm().demandeNomJoueur(i);
+                String nomJoueur = getIhm().demandeNomJoueur(i+1);
                 listNoms.add(nomJoueur);
                 
                 int totDes = (int)( Math.random()*( 12 - 2 + 1 ) ) + 2;
@@ -325,7 +325,7 @@ public void tirerCarte(Joueur j) {
             }
             
             LinkedList<String> listNomsfinal = new LinkedList<String>();
-            listNomsfinal.add(listNoms.get(jmax));
+            //listNomsfinal.add(listNoms.get(jmax));
             
             for (int k = jmax; k < listNoms.size(); k++) {
                 listNomsfinal.add(listNoms.get(k));
@@ -337,7 +337,7 @@ public void tirerCarte(Joueur j) {
                 }  
             }
             
-            for (int m = 0; m <= listNomsfinal.size(); m++) {
+            for (int m = 0; m < listNomsfinal.size(); m++) {
                 _joueurs.put(m+1, new Joueur(listNomsfinal.get(m), this));
                 
             }
