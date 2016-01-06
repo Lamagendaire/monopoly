@@ -34,5 +34,10 @@ public class Compagnie extends CarreauPropriete {
         j.addCompagnie(this);
     }
 
+    @Override
+    public int calculLoyer(Joueur jp) {
+        throw new UnsupportedOperationException("Loyer non prévisible"); 
+    }
+
 
 }

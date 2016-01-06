@@ -12,6 +12,7 @@ public class Joueur {
     private Carreau _positionCourante;
     private int cartesPrison=0;
     private int _totaldes= 0;
+    private boolean estPrison;
     private ArrayList<ProprieteAConstruire> _proprietesAConstruire = new ArrayList<ProprieteAConstruire>();
         
         public Joueur(String nomJ, Monopoly M) {

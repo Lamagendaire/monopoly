@@ -25,4 +25,12 @@ public class Gare extends CarreauPropriete {
         j.addGare(this);
     }
 
+    @Override
+    public int calculLoyer(Joueur jp) {
+        int nbGare= jp.getGares().size();
+        String nom = jp.getNom();
+        int prix=this.montantLoyer(nbGare);
+        return prix;
+    }
+
 }

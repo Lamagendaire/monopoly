@@ -1,7 +1,7 @@
 package Jeu;
 
 public enum CouleurPropriete {
-	bleuFonce, orange, mauve, violet, bleuCiel, jaune, vert, rouge;
+	bleuFonce, orange, mauve, violet, bleuCiel, jaune, vert, rouge,gris;
         /*   \033[XXm
         3. = couleur texte 
         4. = couleur fond

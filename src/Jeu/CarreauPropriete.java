@@ -28,10 +28,11 @@ public abstract class CarreauPropriete extends Carreau {
     
     public abstract void addprop(Joueur j);
     
+    
     public void acheterProriete(Joueur j){
         int cash=j.getCash();
         if(cash>this.getPrixCarreau()){
-            if(this.getMonopoly().getIhm().Achat(this.getNomCarreau(), cash)){
+            if(this.getMonopoly().getIhm().Achat(this.getNomCarreau(), this.getPrixCarreau())){
                 this.setProprietaire(j);
                 String choix=this.getType();
                 this.addprop(j);
@@ -42,6 +43,7 @@ public abstract class CarreauPropriete extends Carreau {
     }
     
     public abstract int calculLoyer(Joueur jp,Joueur j);
+    public abstract int calculLoyer(Joueur jp);
 
     /**
      * @return the _prixCarreau

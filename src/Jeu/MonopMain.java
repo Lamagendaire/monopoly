@@ -52,9 +52,8 @@ public class MonopMain {
                 //temps que le joueur fait des doubles sans aller en prison
                 while(monop.isDoubleDé()){
                     monop.getIhm().messageEtatJoueur(j);
-                    System.out.print("joueur " + j.getNom()+ " : "+j.getPositionCourante().getNumero()+"  "+j.getPositionCourante().getNomCarreau() );
                     monop.jouerUnCoup(j);
-                    System.out.println("    => "+j.getPositionCourante().getNumero()+"  "+j.getPositionCourante().getNomCarreau() );
+                    j.getPositionCourante().construire(j);
                     
                     
                 }

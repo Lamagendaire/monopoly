@@ -80,6 +80,23 @@ public class ProprieteAConstruire extends CarreauPropriete {
         
         
     }
+    @Override
+    public int calculLoyer(Joueur jp) {
+       int nbProp=0;
+        int prix=1;
+        for(ProprieteAConstruire prop: jp.getProprietesAConstruire()){
+            if (prop.getGroupePropriete().equals(this.getGroupePropriete())){nbProp++;}
+        }
+        if(_nbMaisons==0 && this.getGroupePropriete().getProprietes().size()==nbProp){
+            prix= 2*_tabLoyers[0];
+        }else if(_nbHotels==1){
+            prix= _tabLoyers[5];
+        }
+        else{
+            prix= _tabLoyers[_nbMaisons];
+        }
+        return prix;
+    }
 
     @Override
     public void addprop(Joueur j) {
@@ -127,6 +144,8 @@ public class ProprieteAConstruire extends CarreauPropriete {
     public void setPrixHotel(int _prixHotel) {
         this._prixHotel = _prixHotel;
     }
+
+
 
 
 }

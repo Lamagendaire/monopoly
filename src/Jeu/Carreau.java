@@ -20,7 +20,7 @@ public abstract class Carreau {
         }
         
         protected void construire(Joueur J){
-            //A FAIRE
+            
             
             int nbMaisonsTotal = this.getMonopoly().getNbMaisons();
             int nbHotelsTotal = this.getMonopoly().getNbHotels();
@@ -31,10 +31,11 @@ public abstract class Carreau {
                 HashSet<ProprieteAConstruire> pConstructibles = new HashSet<>();
                 
                 pConstructibles = J.propriétéConstructible();
-                
+                if (pConstructibles.isEmpty()!=true){
                 ProprieteAConstruire pacChoisie = this.getMonopoly().getIhm().choixProprieteAConstruire(pConstructibles);
-                
+                if(pacChoisie!=null){
                 int prixMaison = pacChoisie.getPrixMaison();
+                
                 
                 int cash = J.getCash();
                 
@@ -45,12 +46,12 @@ public abstract class Carreau {
                     if (nbMaisons >= 0 && nbMaisons <= 3) {
                         
                         if (nbMaisonsTotal > 0 ) {
-                            
-                            achatMaison = this.getMonopoly().getIhm().demandeConstructionMaison();
+                            int prix = pacChoisie.getPrixMaison();
+                            achatMaison = this.getMonopoly().getIhm().demandeConstructionMaison(prix);
                             
                             if (achatMaison) {
                                 
-                                int prix = pacChoisie.getPrixMaison();
+                                
                                 J.decrementerCash(prix);
                                 pacChoisie.addMaison();
                                 
@@ -71,11 +72,11 @@ public abstract class Carreau {
                         if (nbHotelsTotal > 0 ) {
                             
                             boolean achatHotel;
-                            achatHotel = this.getMonopoly().getIhm().demandeConstructionHotel();
+                            int prix = pacChoisie.getPrixMaison();
+                            achatHotel = this.getMonopoly().getIhm().demandeConstructionHotel(prix);
                             
                             if (achatHotel) {
                                 
-                                int prix = pacChoisie.getPrixMaison();
                                 J.decrementerCash(prix);
                                 pacChoisie.addMaison();
                                 this.getMonopoly().decrementerHotel();
@@ -90,9 +91,9 @@ public abstract class Carreau {
                     
                     
                 }
-                
-            }
-            
+                }
+                }
+            }  
             
         }
         

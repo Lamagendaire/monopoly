@@ -17,6 +17,10 @@ public class IHM {
             System.out.println("Vous avancez de " + aTotalDes + " cases.");
             
 	}
+        
+        public void positionnement(Carreau carreau){
+            System.out.println("n°"+carreau.getNumero()+" "+carreau.getNomCarreau());
+        }
 
 	public void messagePrison(Joueur aJ) {
             
@@ -24,43 +28,43 @@ public class IHM {
 	}
 
 	public void messageEtatJoueur(Joueur aJ) {
+            System.out.println("");
+            System.out.println(CouleurPropriete.gris.toString("_______________________________________"));
+            System.out.println(CouleurPropriete.gris.toString("Infos sur " + aJ.getNom() + " : \t\t\t"));
             
-            System.out.println(CouleurPropriete.mauve.toString("---------------------------------"));
-            System.out.println(CouleurPropriete.mauve.toString("Infos sur " + aJ.getNom() + " : "));
-            
-            System.out.println(CouleurPropriete.vert.toString("Cash : " + aJ.getCash()));
-            System.out.println("Propriétés possédées : ");
+            System.out.println(CouleurPropriete.vert.toString("Cash : " + aJ.getCash()+"\t\t\t\t"));
+            System.out.println(CouleurPropriete.gris.toString("---------------------------------------"));
+            System.out.println(CouleurPropriete.gris.toString("Propriétés possédées : \t\t"));
             for (ProprieteAConstruire pac : aJ.getProprietesAConstruire()) {
                 
-                System.out.print(pac.getNomCarreau());
-                System.out.print("| Groupe : " + pac.getGroupePropriete().getCouleur().toString(pac.getGroupePropriete().getCouleur().toString()));
+                System.out.print(pac.getGroupePropriete().getCouleur().toString(pac.getNomCarreau()));
                 if (pac.getNbMaisons() < 5) {
-                System.out.println("| Nombre de maisons : " + pac.getNbMaisons());
+                System.out.println(pac.getGroupePropriete().getCouleur().toString("|maison:" + pac.getNbMaisons()+"| "+pac.calculLoyer(aJ)+"$\t"));
                 }
                 else {
-                System.out.println("Un hôtel");
+                System.out.println(pac.getGroupePropriete().getCouleur().toString("| un Hôtel | "+pac.calculLoyer(aJ)+"$\t"));
                 }
-                System.out.println("--------------------------------------");
+                System.out.println(CouleurPropriete.gris.toString("******************\t\t\t"));
                 
             }
-            System.out.println("Compagnies possédées : ");
+            System.out.println(CouleurPropriete.gris.toString("---------------------------------------"));
+            System.out.println(CouleurPropriete.gris.toString("Compagnies possédées : \t\t"));
             for (Compagnie c : aJ.getCompagnies()) {
                 
-                System.out.println(c.getNomCarreau());
-                System.out.println("-------------------------------------------");
+                System.out.println(CouleurPropriete.gris.toString(c.getNomCarreau()));
+                System.out.println(CouleurPropriete.gris.toString("---------------------------------------"));
             }
-            System.out.println("Gares possédées : ");
+            System.out.println(CouleurPropriete.gris.toString("Gares possédées : \t\t\t"));
             for (Gare g : aJ.getGares()) {
                 
-                System.out.println(g.getNomCarreau());
-                System.out.println("-------------------------------------------");
+                System.out.println(CouleurPropriete.gris.toString(g.getNomCarreau()+"\t\t\t\t"));
+                System.out.println(CouleurPropriete.gris.toString("---------------------------------------"));
             }
-            
-            System.out.println("Position actuelle : " + aJ.getPositionCourante().getNomCarreau() + " : Case n°" + aJ.getPositionCourante().getNumero());
             if (aJ.getCartesPrison()>0) {
                 
                 System.out.println("Carte prison possédées : " + aJ.getCartesPrison());
             }
+            System.out.println(CouleurPropriete.gris.toString("_______________________________________"));
            
             
            
@@ -68,7 +72,7 @@ public class IHM {
 	}
         public void messagePayerLoyer(Joueur proprio,Joueur payeur, int montant) {
 		
-            System.out.println(CouleurPropriete.rouge.toString(payeur.getNom() + " paye un montant de " + montant + " à " + proprio.getNom() + "pour être passé sur " + payeur.getPositionCourante().getNomCarreau() ));
+            System.out.println(CouleurPropriete.rouge.toString(payeur.getNom() + " paye un montant de " + montant + " à " + proprio.getNom() + " pour être passé sur " + payeur.getPositionCourante().getNomCarreau() ));
             
             
 	}
@@ -85,7 +89,7 @@ public class IHM {
             boolean rep2 = false;
         
             while (ok == false) {
-            System.out.println("Voulez-vous acheter "+ nomCarreau + " ? y/n");
+            System.out.println("Voulez-vous acheter "+ nomCarreau +" pour "+prix+"$ ? y/n");
             String rep = sc.nextLine();
             
             
@@ -135,7 +139,7 @@ public class IHM {
         
         
         
-        public boolean demandeConstructionMaison() {
+        public boolean demandeConstructionMaison(int prix) {
         
         Scanner sc = new Scanner(System.in);
         boolean ok = false;
@@ -146,13 +150,13 @@ public class IHM {
         System.out.println("Voulez-vous construire une maison sur cette propriété ? y/n ");
         String rep = sc.nextLine();
         
-        if (rep=="y") {
+        if ("y".equals(rep)) {
             
             ok = true;
             rep2 = true;
             
         }
-        else if (rep == "n") {
+        else if ("n".equals(rep)) {
             
             ok = true;
             rep2 = false;
@@ -171,7 +175,7 @@ public class IHM {
             
     }
 
-    public boolean demandeConstructionHotel() {
+    public boolean demandeConstructionHotel(int prix) {
        Scanner sc = new Scanner(System.in);
         boolean ok = false;
         boolean rep2 = false;
@@ -181,13 +185,13 @@ public class IHM {
         System.out.println("Voulez-vous construire un hôtel sur cette propriété ? y/n ");
         String rep = sc.nextLine();
         
-        if (rep=="y") {
+        if ("y".equals(rep)) {
             
             ok = true;
             rep2 = true;
             
         }
-        else if (rep == "n") {
+        else if ("n".equals(rep)) {
             
             ok = true;
             rep2 = false;
@@ -213,33 +217,37 @@ public class IHM {
         }
         
         public ProprieteAConstruire choixProprieteAConstruire(HashSet<ProprieteAConstruire> pConstructibles) { 
+            
             Scanner sc = new Scanner(System.in);
             boolean ok = false;
             ProprieteAConstruire pChoisie = null;
             
-            ProprieteAConstruire pCons [] = null;
-            int i = 1;
+            ProprieteAConstruire pCons [] = new ProprieteAConstruire[33];
+            int i = 0;
+            
             for (ProprieteAConstruire pac : pConstructibles) {
                  pCons[i] = pac;
                  i++;
             }
             
             System.out.println("Propriété où construire : ");
+             System.out.println(CouleurPropriete.gris.toString(" 0.Ne pas construire"));
             
-            for (int j = 1; j< pCons.length; j++) {
-                System.out.println(j + ". " + pCons[j].getNomCarreau() );
+            for (int j = 0; j<= pConstructibles.size()-1; j++) {
+                System.out.println(pCons[j].getGroupePropriete().getCouleur().toString((j+1) + ". " + pCons[j].getNomCarreau()+"  Prix Maison/Hôtel "+pCons[j].getPrixMaison()+"$"));
             }
             
             while (ok == false) {
             
-            System.out.println("Propriété choisie : (chiffre correspondant) ");
+            System.out.println("Propriété choisie : ");
             int rep = sc.nextInt();
             
-            if (rep > pCons.length || rep < 1) {
+            if(rep==0){ok=true;}else
+            if (rep > pCons.length || rep < 1 ) {
                 System.out.println("Saisie incorrecte.");
             }
             else {
-                pChoisie = pCons[rep];
+                pChoisie = pCons[rep-1];
                 ok = true;
             }
          

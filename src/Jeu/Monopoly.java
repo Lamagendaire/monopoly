@@ -25,8 +25,10 @@ public class Monopoly {
         private LinkedList<Carte> _cartesCommunaute = new LinkedList<Carte>();
         
 	public void jouerUnCoup(Joueur aJ) {
+                this.getIhm().positionnement(aJ.getPositionCourante());
                 lancerDésAvancer(aJ);
-                    aJ.getPositionCourante().action(aJ);
+                this.getIhm().positionnement(aJ.getPositionCourante());
+                aJ.getPositionCourante().action(aJ);
                     
                 
 	}
@@ -35,7 +37,7 @@ public class Monopoly {
             int totalDés = lancerDes();
             j.setTotaldes(totalDés);
             if (this.getCompteDoubleDé()<3){
-                //_ihm.messageJoueurCourant(j, totalDés);
+                _ihm.messageJoueurCourant(j, totalDés);
                 j.changerPosition(totalDés);
             }else{
                 this.tripleDouble(j);
