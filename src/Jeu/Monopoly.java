@@ -32,15 +32,15 @@ public class Monopoly {
                     this.getIhm().messagePrison(aJ);
                     int score=this.lancerDes();
                     if(_doubleDé){
-                        System.out.println("etapa 1");
+                        
                         aJ.setEstPrison(false);
                         aJ.changerPosition(score);
                         aJ.setNbTourPrison(1);
                     }else if(aJ.getCartesPrison()>0){
-                        System.out.println("etapa 2");
+                        
                         boolean test=this.getIhm().proposerCartePrison();
                         if(test){
-                            System.out.println("etapa 3");
+                            
                             aJ.setEstPrison(false);
                             aJ.changerPosition(score);
                             aJ.setCartesPrison(aJ.getCartesPrison()-1);
@@ -48,13 +48,13 @@ public class Monopoly {
                         }
                         
                     }else if(aJ.getNbTourPrison()>2){
-                        System.out.println("etapa 4");
+                       
                         this.getIhm().messagePayerPrison();
                         aJ.addCash(-50);
                         aJ.setEstPrison(false);
                         aJ.changerPosition(score);
                         aJ.setNbTourPrison(1);
-                    }else{ System.out.println("etapa 5: nbtourprison="+aJ.getNbTourPrison()); aJ.setNbTourPrison(aJ.getNbTourPrison()+1);}
+                    }else{ aJ.setNbTourPrison(aJ.getNbTourPrison()+1);}
                   }else
                 if(aJ.isEstPrison()==false){
                 lancerDésAvancer(aJ);

@@ -22,7 +22,9 @@ public class MonopMain {
         
         //_________________________INITIALISATION_______________________________
         Monopoly monop= new Monopoly("/users/info/etu-s2/defoursr/projet/Monopoly/src/Data/data.txt","/users/info/etu-s2/defoursr/projet/Monopoly/src/Data/data-carte-Chance.txt","/users/info/etu-s2/defoursr/projet/Monopoly/src/Data/data-Carte-Communaute.txt");
+        
         monop.initialiserPartie();
+        
         //______________________________________________________________________
         
         
@@ -53,6 +55,7 @@ public class MonopMain {
                 while(monop.isDoubleDé()){
                     monop.getIhm().messageEtatJoueur(j);
                     monop.jouerUnCoup(j);
+                    
                     
                     
                     
