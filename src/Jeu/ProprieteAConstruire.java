@@ -13,7 +13,13 @@ public class ProprieteAConstruire extends CarreauPropriete {
         this.setGroupePropriete(groupe);
         
     }
-    void addMaison() { _nbMaisons = _nbMaisons + 1; }
+    void addMaison(int nbMaisons) { _nbMaisons = _nbMaisons + nbMaisons; }
+    
+    void addHotel() { _nbHotels = _nbHotels + 1; }
+    
+    void decrementerMaison(int nbMaisons) { _nbMaisons= _nbMaisons - nbMaisons; }
+    
+    void decrementerHotel() { _nbHotels= _nbHotels - 1; }
 
     /**
      * @return the _nbMaisons
@@ -28,7 +34,6 @@ public class ProprieteAConstruire extends CarreauPropriete {
     public int getNbHotels() {
         return _nbHotels;
     }
-
 
     /**
      * @return the _groupePropriete
@@ -51,7 +56,6 @@ public class ProprieteAConstruire extends CarreauPropriete {
         this._nbHotels = _nbHotels;
     }
 
-
     /**
      * @param _groupePropriete the _groupePropriete to set
      */
@@ -66,11 +70,15 @@ public class ProprieteAConstruire extends CarreauPropriete {
         for(ProprieteAConstruire prop: jp.getProprietesAConstruire()){
             if (prop.getGroupePropriete().equals(this.getGroupePropriete())){nbProp++;}
         }
-        if(_nbMaisons==0 && this.getGroupePropriete().getProprietes().size()==nbProp){
+        
+        if(_nbMaisons==0 && this.getGroupePropriete().getProprietes().size()==nbProp && _nbHotels==0){
             prix= 2*_tabLoyers[0];
-        }else if(_nbHotels==1){
+        }
+        
+        else if(_nbHotels==1){
             prix= _tabLoyers[5];
         }
+        
         else{
             prix= _tabLoyers[_nbMaisons];
         }
@@ -87,7 +95,7 @@ public class ProprieteAConstruire extends CarreauPropriete {
         for(ProprieteAConstruire prop: jp.getProprietesAConstruire()){
             if (prop.getGroupePropriete().equals(this.getGroupePropriete())){nbProp++;}
         }
-        if(_nbMaisons==0 && this.getGroupePropriete().getProprietes().size()==nbProp){
+        if(_nbMaisons==0 && this.getGroupePropriete().getProprietes().size()==nbProp && _nbHotels==0){
             prix= 2*_tabLoyers[0];
         }else if(_nbHotels==1){
             prix= _tabLoyers[5];
@@ -147,12 +155,14 @@ public class ProprieteAConstruire extends CarreauPropriete {
 
     public void resetMaisons() {
         int maisonARendre;
+        int hotelARendre;
         
         
         if (this.getNbMaisons()>0) {
         maisonARendre = this.getNbMaisons();
+        hotelARendre = this.getNbHotels();
         
-            if (maisonARendre == 5) {
+            if (hotelARendre == 1) {
                 this.getMonopoly().incrementerHotel();
             }
             else {

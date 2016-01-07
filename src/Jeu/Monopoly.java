@@ -26,7 +26,7 @@ public class Monopoly {
         
 	public void jouerUnCoup(Joueur aJ) {
                 this.getIhm().positionnement(aJ.getPositionCourante());
-                
+                boolean sortPrison=false;
                 
                 if(aJ.isEstPrison()){
                     this.getIhm().messagePrison(aJ);
@@ -36,6 +36,7 @@ public class Monopoly {
                         aJ.setEstPrison(false);
                         aJ.changerPosition(score);
                         aJ.setNbTourPrison(1);
+                        sortPrison=true;
                     }else if(aJ.getCartesPrison()>0){
                         
                         boolean test=this.getIhm().proposerCartePrison();
@@ -45,19 +46,22 @@ public class Monopoly {
                             aJ.changerPosition(score);
                             aJ.setCartesPrison(aJ.getCartesPrison()-1);
                             aJ.setNbTourPrison(1);
+                            sortPrison=true;
                         }
                         
                     }else if(aJ.getNbTourPrison()>2){
-                       
+                        
                         this.getIhm().messagePayerPrison();
                         aJ.addCash(-50);
                         aJ.setEstPrison(false);
                         aJ.changerPosition(score);
                         aJ.setNbTourPrison(1);
-                    }else{ aJ.setNbTourPrison(aJ.getNbTourPrison()+1);}
-                  }else
+                        sortPrison=true;
+                    }else{  aJ.setNbTourPrison(aJ.getNbTourPrison()+1);}
+                  }
                 if(aJ.isEstPrison()==false){
-                lancerDésAvancer(aJ);
+                    if(sortPrison==false){
+                lancerDésAvancer(aJ);}
                 this.getIhm().positionnement(aJ.getPositionCourante());
                 aJ.getPositionCourante().action(aJ);
                 aJ.getPositionCourante().construire(aJ);
@@ -101,6 +105,7 @@ public class Monopoly {
                     if(pris.getNomCarreau().equals("Simple Visite / En Prison")){
                         
                             this.setDoubleDé(false);
+                            this.getIhm().messagePrison3doubles();
                             j.setPositionCourante(pris); 
                             j.setEstPrison(true);
                         
@@ -211,7 +216,7 @@ public class Monopoly {
 			System.err.println("[buildGamePlateau()] : Erreur de lecture du fichier!");
 		}
                       
-        Collections.shuffle(_cartesCommunaute); 
+            Collections.shuffle(_cartesCommunaute); 
         }
         
         
@@ -238,9 +243,10 @@ public class Monopoly {
                                         }
                                         
                                         ProprieteAConstruire newcarreau = new ProprieteAConstruire(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),Integer.parseInt(data.get(i)[4]),"P",groupeChoisie);
-                                        int tab[]= new int[5];
-                                        for (int z=5;z<10;z++){
+                                        int tab[]= new int[6];
+                                        for (int z=5;z<=10;z++){
                                             tab[z-5]=Integer.parseInt(data.get(i)[z]);
+                                            
                                         }
                                         newcarreau.setPrixMaison(Integer.parseInt(data.get(i)[11]));
                                         newcarreau.setPrixHotel(Integer.parseInt(data.get(i)[12]));
@@ -509,4 +515,3 @@ public class Monopoly {
     
     
 }
-

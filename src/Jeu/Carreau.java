@@ -26,7 +26,7 @@ public abstract class Carreau {
             int nbHotelsTotal = this.getMonopoly().getNbHotels();
             boolean achatMaison;
             
-            if (nbMaisonsTotal > 0 && nbHotelsTotal > 0 && J.getPositionCourante() != this.getMonopoly().getCases().get(11) ) {
+            if (nbMaisonsTotal > 0 && nbHotelsTotal > 0 && J.isEstPrison()!=true ) {
                 
                 HashSet<ProprieteAConstruire> pConstructibles = new HashSet<>();
                 
@@ -53,7 +53,7 @@ public abstract class Carreau {
                                 
                                 
                                 J.decrementerCash(prix);
-                                pacChoisie.addMaison();
+                                pacChoisie.addMaison(1);
                                 
                                 this.getMonopoly().decrementerMaison();
                             }
@@ -81,7 +81,10 @@ public abstract class Carreau {
                             if (achatHotel) {
                                 
                                 J.decrementerCash(prix);
-                                pacChoisie.addMaison();
+                                pacChoisie.decrementerMaison(4);
+                                this.getMonopoly().incrementerMaison(4);
+                                
+                                pacChoisie.addHotel();
                                 this.getMonopoly().decrementerHotel();
                                 
                             }

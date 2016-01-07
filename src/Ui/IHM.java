@@ -10,7 +10,17 @@ public class IHM {
     
     
         public IHM(){}
-	
+        
+	public void messagePrison3doubles() {
+        
+        System.out.println("Vous avez fait trois doubles d'affilé. Vous êtes envoyé en prison.");
+        }
+
+        public void egalité() {
+        
+        System.out.println("Egalité !!!");
+        
+        }
     
 
 	public void messageJoueurCourant(Joueur aJ, int aTotalDes) {
@@ -47,7 +57,7 @@ public class IHM {
         }
 
 	public void messagePrison(Joueur aJ) {
-            System.out.println("Le joueur " + aJ.getNom() + " est en prison. Faites un double ou payez 50$.");
+            System.out.println("Le joueur " + aJ.getNom() + " est en prison. Faites un double ou payez 50$ au bout de 3 tours.");
             
 	}
         public void WINNER(Joueur j){
