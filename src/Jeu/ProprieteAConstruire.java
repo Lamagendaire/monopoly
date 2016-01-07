@@ -76,10 +76,10 @@ public class ProprieteAConstruire extends CarreauPropriete {
         }
         this.getMonopoly().getIhm().messagePayerLoyer(jp, j,prix);
         return prix;
-        
-        
+   
         
     }
+    
     @Override
     public int calculLoyer(Joueur jp) {
        int nbProp=0;
@@ -145,7 +145,21 @@ public class ProprieteAConstruire extends CarreauPropriete {
         this._prixHotel = _prixHotel;
     }
 
-
-
-
+    public void resetMaisons() {
+        int maisonARendre;
+        
+        
+        if (this.getNbMaisons()>0) {
+        maisonARendre = this.getNbMaisons();
+        
+            if (maisonARendre == 5) {
+                this.getMonopoly().incrementerHotel();
+            }
+            else {
+                this.getMonopoly().incrementerMaison(maisonARendre);
+            }
+                
+                
+        }
+    }
 }

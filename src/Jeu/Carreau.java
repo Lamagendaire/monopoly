@@ -57,7 +57,10 @@ public abstract class Carreau {
                                 
                                 this.getMonopoly().decrementerMaison();
                             }
-                            
+                         
+                            else {
+                                this.getMonopoly().getIhm().messageMaison();
+                            }
                             
                         }
                         
@@ -81,6 +84,9 @@ public abstract class Carreau {
                                 pacChoisie.addMaison();
                                 this.getMonopoly().decrementerHotel();
                                 
+                            }
+                            else{
+                                this.getMonopoly().getIhm().messageHotel();
                             }
                             
                             

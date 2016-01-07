@@ -27,6 +27,7 @@ public class CarteMouvementDirect extends CarteMouvement {
             
             if (this.getNumero() > J.getPositionCourante().getNumero()) {
                 J.setPositionCourante(J.getMonopoly().getCases().get(numero));
+                
             }
             else {
                 J.addCash(200);
@@ -35,6 +36,16 @@ public class CarteMouvementDirect extends CarteMouvement {
             }
         }
         J.setPositionCourante(J.getMonopoly().getCases().get(numero));
+        
+        if(J.getPositionCourante().getNomCarreau().equals("Simple Visite / En Prison")){
+            
+           
+            J.setEstPrison(true);
+            J.getMonopoly().setDoubleDé(false);
+           
+            
+           
+        }
         
     }
     

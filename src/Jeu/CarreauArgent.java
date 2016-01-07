@@ -3,20 +3,17 @@ package Jeu;
 public class CarreauArgent extends CarreauAction {
     private int _montant;
 
-    public CarreauArgent(Monopoly _monopoly, String _nomCarreau, int _numero, String _type) {
+    public CarreauArgent(Monopoly _monopoly, String _nomCarreau, int _numero, String _type,int _montant) {
         super(_monopoly, _nomCarreau, _numero,  _type);
+        this.setMontant(_montant);
     }
 
     @Override
     public void action(Joueur j) {
+        if(_montant!=0){
         j.getMonopoly().getIhm().messageCarreauArgent(_montant);
         
-        if (_montant>0) {
             j.addCash(_montant);
-        }
-        
-        else if (_montant<0) {
-            j.decrementerCash(_montant);
         }
     }
 

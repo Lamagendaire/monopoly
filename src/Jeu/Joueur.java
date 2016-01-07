@@ -12,13 +12,13 @@ public class Joueur {
     private Carreau _positionCourante;
     private int cartesPrison=0;
     private int _totaldes= 0;
+    private int _nbTourPrison=1;
     private boolean estPrison;
     private ArrayList<ProprieteAConstruire> _proprietesAConstruire = new ArrayList<ProprieteAConstruire>();
         
         public Joueur(String nomJ, Monopoly M) {
            this.setNomJoueur(nomJ);
            this.setMonopoly(M);
-           this.setCartesPrison(0);
            this.setCompagnies(new ArrayList<Compagnie>());
            this.setGares(new ArrayList<Gare>());
            _positionCourante=(_monopoly.getCases().get(1));
@@ -71,13 +71,13 @@ public class Joueur {
         throw new UnsupportedOperationException();
     }
     public void addCash(int reçu){
-        System.out.println(this.getNom()+"à reçu "+reçu);
         this.setCash(this.getCash()+reçu);
     }
 
     public void changerPosition(int aTotalDes) {
         int num=_positionCourante.getNumero()+aTotalDes;
-        if (num>39){num = num-39;this.addCash(200);}
+        if (num>39){num = num-39;this.addCash(200);
+        this.getMonopoly().getIhm().messageDepart();}
         this.setPositionCourante(_monopoly.getCases().get(num));
     }
 
@@ -85,9 +85,6 @@ public class Joueur {
         return this._positionCourante;
     }
 
-    public void nouvellePosition(int aTotalDes, int aNum) {
-        throw new UnsupportedOperationException();
-    }
 
     public void setPositionCourante(Carreau aC2) {
         _positionCourante=aC2;
@@ -250,11 +247,39 @@ public class Joueur {
     /**
      * @param cartesPrison the cartesPrison to set
      */
-    private void setCartesPrison(int cartesPrison) {
+    public void setCartesPrison(int cartesPrison) {
         this.cartesPrison = cartesPrison;
     }
     
     public  void addCartesPrison(){
         cartesPrison++;
+    }
+
+    /**
+     * @return the estPrison
+     */
+    public boolean isEstPrison() {
+        return estPrison;
+    }
+
+    /**
+     * @param estPrison the estPrison to set
+     */
+    public void setEstPrison(boolean estPrison) {
+        this.estPrison = estPrison;
+    }
+
+    /**
+     * @return the _nbTourPrison
+     */
+    public int getNbTourPrison() {
+        return _nbTourPrison;
+    }
+
+    /**
+     * @param _nbTourPrison the _nbTourPrison to set
+     */
+    public void setNbTourPrison(int _nbTourPrison) {
+        this._nbTourPrison = _nbTourPrison;
     }
 }

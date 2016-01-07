@@ -10,7 +10,11 @@ public class CarreauMouvement extends CarreauAction {
     @Override
     public void action(Joueur j) {
         for(Carreau pris: this.getMonopoly().getCases().values()){
-                    if(pris.getNomCarreau().equals("Simple Visite / En Prison")){j.setPositionCourante(pris);}
+                    if(pris.getNomCarreau().equals("Simple Visite / En Prison")){
+                        j.setPositionCourante(pris);
+                        j.setEstPrison(true);
+                        this.getMonopoly().getIhm().messagePrison(j);
+                    }
                 }
     }
 }

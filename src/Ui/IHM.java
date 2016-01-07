@@ -3,6 +3,7 @@ package Ui;
 import Jeu.*;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Scanner;
 
 public class IHM {
@@ -17,15 +18,58 @@ public class IHM {
             System.out.println("Vous avancez de " + aTotalDes + " cases.");
             
 	}
+        public void messageDepart(){
+            System.out.println(CouleurPropriete.vert.toString("Case départ: recevez 200$"));
+        }
+        
+        public void messageMaison(){
+            System.out.println("Il n'y a pas de maisons disponibles.");
+        }
+        
+        public void messageHotel(){
+            System.out.println("Il n'y a pas d'Hotêls disponibles.");
+        }
         
         public void positionnement(Carreau carreau){
             System.out.println("n°"+carreau.getNumero()+" "+carreau.getNomCarreau());
         }
+        
+        public void messageCarteCommunauté(Carte c) {
+        
+        System.out.println("Vous piochez une carte communauté : " + c.getTexte());
+        
+        }
+
+        public void messageCarteChance(Carte c) {
+        
+        System.out.println("Vous piochez une carte chance : " + c.getTexte());
+        
+        }
 
 	public void messagePrison(Joueur aJ) {
-            
+            System.out.println("Le joueur " + aJ.getNom() + " est en prison. Faites un double ou payez 50$.");
             
 	}
+        public void WINNER(Joueur j){
+            System.out.println(CouleurPropriete.rouge.toString("LE GAGNANT EST "+ j.getNom()+"!!!"));
+        }
+                
+                
+        public void messagePayerPrison(){
+            System.out.println("Vous payez 50$ et sortez de prison.");
+        }
+        
+        public void messageConfirmationLancerDes(){
+            
+             Scanner sc = new Scanner(System.in);
+             System.out.print("Lancer Dés ");
+             String rep = sc.nextLine();
+             
+        }
+        
+        public void messageLancerDes(int des1, int des2){
+            System.out.println("lancé: "+des1 +"+"+ des2 + " = "+ (des1+des2));
+        }
 
 	public void messageEtatJoueur(Joueur aJ) {
             System.out.println("");
@@ -62,7 +106,7 @@ public class IHM {
             }
             if (aJ.getCartesPrison()>0) {
                 
-                System.out.println("Carte prison possédées : " + aJ.getCartesPrison());
+                System.out.println(CouleurPropriete.gris.toString("Carte prison possédées : " + aJ.getCartesPrison()));
             }
             System.out.println(CouleurPropriete.gris.toString("_______________________________________"));
            
@@ -231,7 +275,7 @@ public class IHM {
             }
             
             System.out.println("Propriété où construire : ");
-             System.out.println(CouleurPropriete.gris.toString(" 0.Ne pas construire"));
+             System.out.println(CouleurPropriete.gris.toString(" 0.Tour suivant"));
             
             for (int j = 0; j<= pConstructibles.size()-1; j++) {
                 System.out.println(pCons[j].getGroupePropriete().getCouleur().toString((j+1) + ". " + pCons[j].getNomCarreau()+"  Prix Maison/Hôtel "+pCons[j].getPrixMaison()+"$"));
@@ -273,5 +317,60 @@ public class IHM {
         System.out.println("Vous recevez un total de " + montantTot);
         
     }
+   
+    public void messageFailliteProp(Joueur J) {
+        
+        System.out.println("Le joueur " + J.getNom() + " a fait faillite, toutes ses propriétés sont remises en jeu.");
+        
+    }
+    
+    public boolean proposerCartePrison() {
+        boolean rep2 = false;
+        boolean ok = false;
+        
+        Scanner sc = new Scanner(System.in);
+        
+        while(ok== false) {
+        System.out.println("Voulez-vous utiliser une carte de sortie de prison ? y/n");
+        String rep = sc.nextLine();
+        
+        if (rep.equals("y")) {
+            
+            ok = true;
+            rep2 = true;
+            
+            System.out.println("Carte de sortie de prison utilisée");
+            
+        }
+        else if (rep.equals("n")) {
+            
+            ok = true;
+            rep2 = false;
+        }
+        else {
+            System.out.println("Saisie incorrecte");
+        }
+        
+        }
+        
+        return rep2;
+        
+        
+    }
+    
+    public void afficherTotalReparation(int total) {
+        
+        System.out.println("Le total des réparations s'éléve à : "+ total+"$");
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+
 
 }

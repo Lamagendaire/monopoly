@@ -53,11 +53,13 @@ public class MonopMain {
                 while(monop.isDoubleDé()){
                     monop.getIhm().messageEtatJoueur(j);
                     monop.jouerUnCoup(j);
-                    j.getPositionCourante().construire(j);
+                    
                     
                     
                 }
             }
+            monop.failliteJoueur(); //on verifie qu'aucun joueur n'as fait faillite durant le tour
+            if (monop.getJoueurs().size()==1){monop.getIhm().WINNER(monop.getJoueurs().get(1)); partie=false;}
         }
         //______________________________________________________________________
         }

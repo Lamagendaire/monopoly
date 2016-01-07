@@ -26,14 +26,51 @@ public class Monopoly {
         
 	public void jouerUnCoup(Joueur aJ) {
                 this.getIhm().positionnement(aJ.getPositionCourante());
+                
+                
+                if(aJ.isEstPrison()){
+                    this.getIhm().messagePrison(aJ);
+                    int score=this.lancerDes();
+                    if(_doubleDé){
+                        System.out.println("etapa 1");
+                        aJ.setEstPrison(false);
+                        aJ.changerPosition(score);
+                        aJ.setNbTourPrison(1);
+                    }else if(aJ.getCartesPrison()>0){
+                        System.out.println("etapa 2");
+                        boolean test=this.getIhm().proposerCartePrison();
+                        if(test){
+                            System.out.println("etapa 3");
+                            aJ.setEstPrison(false);
+                            aJ.changerPosition(score);
+                            aJ.setCartesPrison(aJ.getCartesPrison()-1);
+                            aJ.setNbTourPrison(1);
+                        }
+                        
+                    }else if(aJ.getNbTourPrison()>2){
+                        System.out.println("etapa 4");
+                        this.getIhm().messagePayerPrison();
+                        aJ.addCash(-50);
+                        aJ.setEstPrison(false);
+                        aJ.changerPosition(score);
+                        aJ.setNbTourPrison(1);
+                    }else{ System.out.println("etapa 5: nbtourprison="+aJ.getNbTourPrison()); aJ.setNbTourPrison(aJ.getNbTourPrison()+1);}
+                  }else
+                if(aJ.isEstPrison()==false){
                 lancerDésAvancer(aJ);
                 this.getIhm().positionnement(aJ.getPositionCourante());
                 aJ.getPositionCourante().action(aJ);
+                aJ.getPositionCourante().construire(aJ);
+                if (aJ.getCash()<=0){
+                this.failliteProp(aJ);
+                this.setDoubleDé(false);
+                }}
                     
                 
 	}
 
 	private void lancerDésAvancer(Joueur j) {
+            
             int totalDés = lancerDes();
             j.setTotaldes(totalDés);
             if (this.getCompteDoubleDé()<3){
@@ -41,12 +78,15 @@ public class Monopoly {
                 j.changerPosition(totalDés);
             }else{
                 this.tripleDouble(j);
+                
             }	
 	}
 
 	public int lancerDes() {
+                this.getIhm().messageConfirmationLancerDes();
 		int de1= (int)( Math.random()*( 6 - 1+1 ) ) + 1;
                 int de2= (int)( Math.random()*( 6 - 1+1 ) ) + 1;
+                this.getIhm().messageLancerDes(de1, de2);
                 if (de1==de2){this.setCompteDoubleDé(this.getCompteDoubleDé()+1);}else{this.setDoubleDé(false);}
                 return de1+de2;
                 
@@ -58,26 +98,34 @@ public class Monopoly {
 
 	public void tripleDouble(Joueur j) {
                 for(Carreau pris: _carreaux.values()){
-                    if(pris.getNomCarreau().equals("Simple Visite / En Prison")){j.setPositionCourante(pris);}
+                    if(pris.getNomCarreau().equals("Simple Visite / En Prison")){
+                        
+                            this.setDoubleDé(false);
+                            j.setPositionCourante(pris); 
+                            j.setEstPrison(true);
+                        
+                            
+                       
+                    }
                 }
 		
 	}
         
-public void tirerCarte(Joueur j) {
+        public void tirerCarte(Joueur j) {
             
-            // On peut aussi utiliser le numéro du carreau pour identifier la position du joueur.
             
-            if(j.getPositionCourante().getNomCarreau()=="Caisse de communauté") {
-                
-                _cartesCommunaute.element().action(j);
-                _cartesCommunaute.offerLast(_cartesCommunaute.element());
+            if(j.getPositionCourante().getNomCarreau().equals("Caisse de Communauté")) {
+                 
+                _cartesCommunaute.getFirst().action(j);
+                this.getIhm().messageCarteCommunauté(_cartesCommunaute.getFirst());
+                _cartesCommunaute.offerLast(_cartesCommunaute.pollFirst());
                 
             }
             
-            else if (j.getPositionCourante().getNomCarreau()=="Chance") {
-                
-                _cartesChance.element().action(j);
-                _cartesChance.offerLast(_cartesChance.element());
+            else if (j.getPositionCourante().getNomCarreau().equals("Chance")) {
+                _cartesChance.getFirst().action(j);
+                this.getIhm().messageCarteChance(_cartesChance.getFirst());
+                _cartesChance.offerLast(_cartesChance.pollFirst());
                 
             }
             
@@ -182,7 +230,7 @@ public void tirerCarte(Joueur j) {
 			for(int i=0; i<data.size(); ++i){
 				String caseType = data.get(i)[0];
 				if(caseType.compareTo("P") == 0){
-					System.out.println("Propriété :\t\t" + data.get(i)[2] + "\t* case " + data.get(i)[1]);
+					
                                         Groupe groupeChoisie=null;
                                         //Recherche de groupe
                                         for(Groupe group: groupes){
@@ -201,28 +249,28 @@ public void tirerCarte(Joueur j) {
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
 				}
 				else if(caseType.compareTo("G") == 0){
-					System.out.println("Gare :\t\t\t" + data.get(i)[2] + "\t* case " + data.get(i)[1]);
+					
                                         Gare newcarreau = new Gare(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),Integer.parseInt(data.get(i)[3]),"G");
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
 				}
 				else if(caseType.compareTo("C") == 0){
-					System.out.println("Compagnie :\t\t" + data.get(i)[2] + "\t* case " + data.get(i)[1]);
+					
                                         Compagnie newcarreau = new Compagnie(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),Integer.parseInt(data.get(i)[3]),"C");
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
 				}
 				else if(caseType.compareTo("CT") == 0){
-					System.out.println("Case Tirage :\t\t" + data.get(i)[2] + "\t* case " + data.get(i)[1]);
+					
                                         CarreauTirage newcarreau = new CarreauTirage(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),"T");
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
 				}
 				else if(caseType.compareTo("CA") == 0){
                                         
-					System.out.println("Case Argent :\t\t" + data.get(i)[2] + "\t* case " + data.get(i)[1]);
-                                        CarreauArgent newcarreau = new CarreauArgent(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),"CA");
+					
+                                        CarreauArgent newcarreau = new CarreauArgent(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),"CA",Integer.parseInt(data.get(i)[3]));
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
 				}
 				else if(caseType.compareTo("CM") == 0){
-                                        System.out.println("Case Mouvement :\t" + data.get(i)[2] + "\t* case " + data.get(i)[1]);
+                                        
                                         CarreauMouvement newcarreau = new CarreauMouvement(this,data.get(i)[2],Integer.parseInt(data.get(i)[1]),"CM");
                                         _carreaux.put(Integer.parseInt(data.get(i)[1]), newcarreau);
                                     }
@@ -419,6 +467,46 @@ public void tirerCarte(Joueur j) {
     void decrementerHotel() {
         _nbHotels = _nbHotels - 1;
     }
+    
+    public void incrementerHotel() {
         
+        this.setNbHotels(this.getNbHotels()+1);
+    }
+
+    public void incrementerMaison(int maisonARendre) {
+        
+        this.setNbMaisons(this.getNbMaisons()+ maisonARendre);
+    }
+    
+    public void failliteJoueur(){
+        for (int i = 1; i < this.getJoueurs().size(); i++) {
+            if (this.getJoueurs().get(i).getCash()<=0) {
+                _joueurs.remove(i);
+            }
+        }
+    }
+    
+    
+    public void failliteProp(Joueur J) {
+        
+        for (ProprieteAConstruire pac : J.getProprietesAConstruire()) {
+            pac.resetProprietaire();
+            pac.resetMaisons();
+        }
+        for (Compagnie c : J.getCompagnies()) {
+            c.resetProprietaire();
+        }
+        for (Gare g : J.getGares()) {
+            g.resetProprietaire();
+        }
+        
+        this.getIhm().messageFailliteProp(J);
+     
+    }
+    
+    
+    
+    
+    
 }
 

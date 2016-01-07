@@ -23,12 +23,20 @@ public class CarteReparation extends Carte {
 
     
  @Override public void action(Joueur J) {
+     int total = 0;
+     
      for (ProprieteAConstruire PC : J.getProprietesAConstruire()) {
          if (PC.getNbMaisons() < 4) {
+             total = total + montantMaison*PC.getNbMaisons();
              J.addCash(montantMaison*PC.getNbMaisons()); }
-         else { J.addCash(montantHotel); 
+         else { 
+             total = total + montantHotel;
+             J.addCash(montantHotel); 
+         
          } 
-     } 
+     }
+     
+     J.getMonopoly().getIhm().afficherTotalReparation(total);
  }
     
     

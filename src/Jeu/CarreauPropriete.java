@@ -87,4 +87,7 @@ public abstract class CarreauPropriete extends Carreau {
         this._proprietaire = _proprietaire;
     }
     
+    public void resetProprietaire() {
+        this.setProprietaire(null);
+    }
 }
