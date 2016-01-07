@@ -18,6 +18,7 @@ public class Monopoly {
 	private int _nbHotels = 12;
         private boolean _doubleDé=true;
         private int _compteDoubleDé=0;
+        private boolean partieInit=false;
 	public IHM _ihm= new IHM();
 	private HashMap<Integer,Carreau> _carreaux= new HashMap();
 	private LinkedHashMap<Integer,Joueur> _joueurs = new LinkedHashMap<Integer,Joueur>();
@@ -226,8 +227,6 @@ public class Monopoly {
             ArrayList<Groupe> groupes = new ArrayList<Groupe>();
             for(CouleurPropriete coul: CouleurPropriete.values()){
                 groupes.add(new Groupe(coul));
-                System.out.println(coul.toString("* groupe créé *"));
-                System.out.println("");
             }
 		try{
 			ArrayList<String[]> data = readDataFile(dataFilename, ",");
@@ -508,6 +507,63 @@ public class Monopoly {
         
         this.getIhm().messageFailliteProp(J);
      
+    }
+public boolean menuPrincipal() {
+        
+        boolean done = false;
+        while (done==false) {
+        
+        int choix=this.getIhm().menuPrincipal();
+        
+        if (choix == 1) {
+                
+                this.initialiserPartie();
+                this.setPartieInit(true);
+        }
+        
+        else if (choix == 2 ) {
+                
+                
+                if (this.isPartieInit()) {
+                return true;
+                }
+                else{ 
+                this.getIhm().afficher("Vous devez inscrire les joueurs avant de lancer une partie.");
+                }
+                
+        }
+            
+        else if (choix == 3) {
+                
+                return false;
+                
+        } 
+         
+        else {
+                
+                this.getIhm().afficher("Saisie incorrecte");
+                
+                
+        }
+            
+        }
+        
+        return false;
+        
+    }
+
+    /**
+     * @return the partieInit
+     */
+    public boolean isPartieInit() {
+        return partieInit;
+    }
+
+    /**
+     * @param partieInit the partieInit to set
+     */
+    public void setPartieInit(boolean partieInit) {
+        this.partieInit = partieInit;
     }
     
     

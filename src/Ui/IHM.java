@@ -81,44 +81,48 @@ public class IHM {
             System.out.println("lancé: "+des1 +"+"+ des2 + " = "+ (des1+des2));
         }
 
+        
+        
+
 	public void messageEtatJoueur(Joueur aJ) {
             System.out.println("");
-            System.out.println(CouleurPropriete.gris.toString("_______________________________________"));
-            System.out.println(CouleurPropriete.gris.toString("Infos sur " + aJ.getNom() + " : \t\t\t"));
+            System.out.println(CouleurPropriete.gris.toString(" _______________________________________________"));
+            System.out.println(CouleurPropriete.gris.toString(" Infos sur " + aJ.getNom() + " : \t\t\t\t"));
             
-            System.out.println(CouleurPropriete.vert.toString("Cash : " + aJ.getCash()+"\t\t\t\t"));
-            System.out.println(CouleurPropriete.gris.toString("---------------------------------------"));
-            System.out.println(CouleurPropriete.gris.toString("Propriétés possédées : \t\t"));
+            System.out.println(CouleurPropriete.vert.toString("\033[47m Cash : " + aJ.getCash()+"\t\t\t\t\t"));
+            System.out.println(CouleurPropriete.gris.toString(" -----------------------------------------------"));
+            System.out.println(CouleurPropriete.gris.toString(" Propriétés possédées : \t\t\t"));
             for (ProprieteAConstruire pac : aJ.getProprietesAConstruire()) {
                 
-                System.out.print(pac.getGroupePropriete().getCouleur().toString(pac.getNomCarreau()));
+                System.out.print(pac.getGroupePropriete().getCouleur().toString(" "+pac.getNumero()+" "+pac.getNomCarreau()));
                 if (pac.getNbMaisons() < 5) {
-                System.out.println(pac.getGroupePropriete().getCouleur().toString("|maison:" + pac.getNbMaisons()+"| "+pac.calculLoyer(aJ)+"$\t"));
+
+                    System.out.println(pac.getGroupePropriete().getCouleur().toString("|maison:" + pac.getNbMaisons()+"| "+pac.calculLoyer(aJ)+"$\t"));
                 }
                 else {
-                System.out.println(pac.getGroupePropriete().getCouleur().toString("| un Hôtel | "+pac.calculLoyer(aJ)+"$\t"));
+                    System.out.println(pac.getGroupePropriete().getCouleur().toString("| un Hôtel | "+pac.calculLoyer(aJ)+"$\t"));
                 }
-                System.out.println(CouleurPropriete.gris.toString("******************\t\t\t"));
+                System.out.println((" ******************\t\t\t\t"));
                 
             }
-            System.out.println(CouleurPropriete.gris.toString("---------------------------------------"));
-            System.out.println(CouleurPropriete.gris.toString("Compagnies possédées : \t\t"));
+            System.out.println(CouleurPropriete.gris.toString(" -----------------------------------------------"));
+            System.out.println(CouleurPropriete.gris.toString(" Compagnies possédées : \t\t\t"));
             for (Compagnie c : aJ.getCompagnies()) {
                 
-                System.out.println(CouleurPropriete.gris.toString(c.getNomCarreau()));
-                System.out.println(CouleurPropriete.gris.toString("---------------------------------------"));
+                System.out.println(CouleurPropriete.gris.toString(" "+c.getNomCarreau()));
+                System.out.println(CouleurPropriete.gris.toString(" -----------------------------------------------"));
             }
-            System.out.println(CouleurPropriete.gris.toString("Gares possédées : \t\t\t"));
+            System.out.println(CouleurPropriete.gris.toString(" Gares possédées : \t\t\t\t"));
             for (Gare g : aJ.getGares()) {
                 
-                System.out.println(CouleurPropriete.gris.toString(g.getNomCarreau()+"\t\t\t\t"));
-                System.out.println(CouleurPropriete.gris.toString("---------------------------------------"));
+                System.out.println(CouleurPropriete.gris.toString(" "+g.getNomCarreau()+"\t\t\t\t\t"));
+                System.out.println(CouleurPropriete.gris.toString(" -----------------------------------------------"));
             }
             if (aJ.getCartesPrison()>0) {
                 
-                System.out.println(CouleurPropriete.gris.toString("Carte prison possédées : " + aJ.getCartesPrison()));
+                System.out.println(CouleurPropriete.gris.toString(" Carte prison possédées : " + aJ.getCartesPrison()+"\t\t\t"));
             }
-            System.out.println(CouleurPropriete.gris.toString("_______________________________________"));
+            System.out.println(CouleurPropriete.gris.toString(" _______________________________________________"));
            
             
            
@@ -373,7 +377,73 @@ public class IHM {
         System.out.println("Le total des réparations s'éléve à : "+ total+"$");
         
     }
+    public int menuPrincipal() {
+        
+        
+        int a =0;
+        String b="\t\t";
+        
+System.out.println(CouleurPropriete.gris.toString(b+"                                                         #@#                                                           \t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+"                                                       @` @@:                                                          \t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+"                                                     #:   ;@@:                                                         \t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+"                                                    #@     #@#         /---\\                                          \t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+"                                                   ,#@#    `#@+       |,;┌-'                                            \t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+"                                                   @@@@@;  @@@'@@@:    \\,.\\                                            \t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+"                                                    #@#@#@@@@@@@@@@     \\.`\\                                           \t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+"                                                     @@@@@@@@@@@@@@@      \\,\\                                         \t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+"                                                      @@@+      ,- #     @\\  @@                                        \t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+"  ',,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,@#,,,,,,,#@@#  ~~    € `#,@,@  @@  @,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,;  \t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" '                                         @ #       @@#    €   \\   #+,@@@@@   @                                     ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + '''''''''''''''''''''''''''''''''''''''@   @+'''''++#/       /  ##@@@#@@@   @ \\'''''''''''''''''''''''''''''''''' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + ''''''''''''''''''''''''+'''+''''''''+@    `@@+''''#+/   /---┘--\\@@@@@@'@ @@'\\ \\+'''+'''''''++''''''++''''''''++' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + '''++''''''''''++'''''+       +''''''@   @#:#@@@#'#' # ./____/\\__\\@@@@@++'''''--     +'''''+  +''''+  +''''''+  + ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + ''+  +''''''''+  +'''+         +''+'++@@''@@@@@@@@@#@.# @+     @@@@@    +'''''+        +'''+  +'''''+  +''''+  +' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + ''+  +''''''''+  +''+    +''+   +''+  +''''#@@#@@@@@@@@,`@'@  @@@@  ++++ +''+    +''+   +''+  +''''''+  +''+  +'' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + ''+  +''''''''+  +'+   +'''''+   +'+   +''''+@@@@@@@@@@`#,  ;@#+'+  +''+ +'+    +''''+   +'+  +'''''''+  +'+  +'' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + ''+   +''''''+   +'+  +'''''''+  +'+    +'''+  +#@@@@@#. ;   .@.'+  +''+ +'+   +''''''+   ++  +'''''''+   +  +''' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + ''+    +''''+    ++  +'''''''''+  ++  +  +''+  ++  +'@@. @:,+ @ ++  ++++ +'+  +''''''''+  ++  +''''''''+     +''' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + ''+ +   +''+   + ++  +'''''''''+  ++  ++  +'+  ++  +'@@   @ `@  ++      +''+  +''''''''+  ++  +'''''''''+   +'''' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + +'+ ++  +''+  ++ ++  +'''''''''+  ++  +'+  ++  ++  +'@@   :  @  ++   +'''''+  +''''''''+  ++  +''''''''''+  +'''' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + ''+ +'+  ++  +'+ ++  +'''''''''+  ++  +''+  +  ++  +'@@     @.  ++  +''''''+  +''''''''+  ++  +'''''''''+  +''''' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + ''+ +''+    +''+ +'+  +'''''''+   ++  +'''+    ++  +@@@ #: @   +'+  +''''''+   +''''''+   ++  +'''''''''+  +''''' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + ''+ +''+    +''+ +'+   +'''''+   +'+  +''''+   +'+   +@@@@@@  +''+  +'''''''+   +''''+  +''+  +'''''''''+  +''''' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + ''+ +'''+  +'''+ +''+    +''+   +''+  +'''''+  +''+   +''+   +'''+  +'''''''+    +''+   +''+  ++++++'''+  +'''''' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + ''+ +'''+  +'''+ +'''+         +'''+  +''''''+ +'''+        +''''+  +''''''''+         +'''+        +'+  +''''''' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + ''.+'''''++'''''+''''''+     +''''''++''''''''+'''''+     +'''''''++'''''''''''+     +''''''++++++++'''++'''''''' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" ' ''''''''''''''''''''''''+'''+''''''''''''''''''''''''+'''+''''''''''''''''''''''+'''+'''''''''''''''''''''''''''' ';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" + ,,,.,,,,...,,.,.,,.,,..,,.,,,,.,,,,,,,,.,,,,,,..,,,,.,,,,,,,.,,,..,,.,,,,,,,,..,,.,,,,,,,,,,.,,,,,,.,,,..,.,,,.,,'';\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+" `;                                                                                                                 ;::\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+"  .;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:;,\t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString(b+"   .,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, \t\t"));a++;
+System.out.println(CouleurPropriete.gris.toString("                                                                                                                       \t\t\t"));
     
+        
+        
+        
+        
+        
+        
+        
+        
+        Scanner sc = new Scanner(System.in);
+        
+        int choix;
+        
+        System.out.println(CouleurPropriete.rouge.toString("  1. Inscrire joueurs\t"));
+        System.out.println(CouleurPropriete.rouge.toString("  2. Démarrer partie\t"));
+        System.out.println(CouleurPropriete.rouge.toString("  3. Quitter partie\t"));
+        
+        System.out.print("Choix : ");
+        choix = sc.nextInt();
+        
+        return choix;
+        
+        
+    }
+
+    public void afficher(String s) {
+        System.out.println(s);
+    }
     
     
     

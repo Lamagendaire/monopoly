@@ -16,18 +16,18 @@ public enum CouleurPropriete {
             public String toString(String infos) {
 
         String couleur = "";
-        if (this == bleuFonce) { couleur = "34"; } else
-            if (this == rouge) { couleur = "31"; } else
-                if (this == vert) { couleur = "32"; } else
-                    if (this == jaune) { couleur = "33"; } else
-                        if (this == orange) { couleur = "43"; } else
-                        if (this == mauve) { couleur = "35"; } else
-                            if (this == bleuCiel) { couleur = "36"; } else
-                                if (this == violet) { couleur = "45"; }
-                            else { couleur = "30"; } 
+        if (this == bleuFonce) { couleur = "\033[34"; } else
+            if (this == rouge) { couleur = "\033[31"; } else
+                if (this == vert) { couleur = "\033[32"; } else
+                    if (this == jaune) { couleur = "\033[33"; } else
+                        if (this == orange) { couleur = "\033[43m\033[31"; } else
+                        if (this == mauve) { couleur = "\033[35"; } else
+                            if (this == bleuCiel) { couleur = "\033[36"; } else
+                                if (this == violet) { couleur = "\033[45"; }
+                            else { couleur = "\033[47m\033[30"; } 
 
        
-        return "\033[47m \033[" + couleur + "m" + infos + "\033[0m";
+        return "" + couleur + "m" + infos + "\033[0m";
 }
 
 }
