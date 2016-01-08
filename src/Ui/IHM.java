@@ -1,13 +1,21 @@
 package Ui;
 
 import Jeu.*;
+import java.awt.BorderLayout;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class IHM {
-    
+        
+        private JFrame windows1;
+        private JPanel panelLogo;
+        private JLabel image;
     
         public IHM(){}
         
@@ -69,11 +77,12 @@ public class IHM {
             System.out.println("Vous payez 50$ et sortez de prison.");
         }
         
-        public void messageConfirmationLancerDes(){
+        public String messageConfirmationLancerDes(){
             
              Scanner sc = new Scanner(System.in);
              System.out.print("Lancer Dés ");
              String rep = sc.nextLine();
+             return rep;
              
         }
         
@@ -446,7 +455,21 @@ System.out.println(CouleurPropriete.gris.toString("                             
     }
     
     
-    
+        public void initialiserIhmMonop(){
+            
+            
+        windows1=new JFrame("Monopoly");
+        windows1.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        windows1.setSize(600, 400);
+        panelLogo=new JPanel();
+       
+        JLabel image = new JLabel( new ImageIcon( "/users/info/etu-s2/defoursr/projet/Monopoly/src/Data/monofinale.jpg"));
+        panelLogo.add(image);
+
+         windows1.add(panelLogo);
+         windows1.setVisible(true);   
+                
+        }
     
     
     

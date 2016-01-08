@@ -63,9 +63,10 @@ public class Monopoly {
                 if(aJ.isEstPrison()==false){
                     if(sortPrison==false){
                 lancerDésAvancer(aJ);}
+                if (aJ.getCash()>0){
                 this.getIhm().positionnement(aJ.getPositionCourante());
                 aJ.getPositionCourante().action(aJ);
-                aJ.getPositionCourante().construire(aJ);
+                aJ.getPositionCourante().construire(aJ); }
                 if (aJ.getCash()<=0){
                 this.failliteProp(aJ);
                 this.setDoubleDé(false);
@@ -77,23 +78,25 @@ public class Monopoly {
 	private void lancerDésAvancer(Joueur j) {
             
             int totalDés = lancerDes();
+            if(totalDés==0){j.setCash(0);}else{
             j.setTotaldes(totalDés);
             if (this.getCompteDoubleDé()<3){
                 _ihm.messageJoueurCourant(j, totalDés);
                 j.changerPosition(totalDés);
             }else{
                 this.tripleDouble(j);
-                
+            }
             }	
 	}
 
 	public int lancerDes() {
-                this.getIhm().messageConfirmationLancerDes();
+                String rep= this.getIhm().messageConfirmationLancerDes();
+                if (rep.equals("quitter")){return 0;}else{
 		int de1= (int)( Math.random()*( 6 - 1+1 ) ) + 1;
                 int de2= (int)( Math.random()*( 6 - 1+1 ) ) + 1;
                 this.getIhm().messageLancerDes(de1, de2);
                 if (de1==de2){this.setCompteDoubleDé(this.getCompteDoubleDé()+1);}else{this.setDoubleDé(false);}
-                return de1+de2;
+                return de1+de2;}
                 
 	}
 

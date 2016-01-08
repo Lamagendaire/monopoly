@@ -28,7 +28,7 @@ public class CarteAnniversaire extends Carte {
         
        int montantRecu = 0; 
         
-       for (int i = 1; i < J.getMonopoly().getJoueurs().size(); i++) {
+       for (int i = 1; i < J.getMonopoly().getJoueurs().size()+1; i++) {
            
           if (J != J.getMonopoly().getJoueurs().get(i)) {
           montantRecu = montantRecu + montant;     

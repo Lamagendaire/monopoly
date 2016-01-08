@@ -76,7 +76,7 @@ public class Joueur {
 
     public void changerPosition(int aTotalDes) {
         int num=_positionCourante.getNumero()+aTotalDes;
-        if (num>39){num = num-39;this.addCash(200);
+        if (num>40){num = num-40;this.addCash(200);
         this.getMonopoly().getIhm().messageDepart();}
         this.setPositionCourante(_monopoly.getCases().get(num));
     }

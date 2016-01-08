@@ -23,7 +23,7 @@ public class MonopMain {
         //_________________________INITIALISATION_______________________________
         Monopoly monop= new Monopoly("/users/info/etu-s2/defoursr/projet/Monopoly/src/Data/data.txt","/users/info/etu-s2/defoursr/projet/Monopoly/src/Data/data-carte-Chance.txt","/users/info/etu-s2/defoursr/projet/Monopoly/src/Data/data-Carte-Communaute.txt");
         
-        
+        monop.getIhm().initialiserIhmMonop();
         
         //______________________________________________________________________
         
@@ -62,7 +62,17 @@ public class MonopMain {
                 }
             }
             monop.failliteJoueur(); //on verifie qu'aucun joueur n'as fait faillite durant le tour
-            if (monop.getJoueurs().size()==1){monop.getIhm().WINNER(monop.getJoueurs().get(1)); partie=false;}
+            if (monop.getJoueurs().size()==1){
+                
+                Joueur jWin = null;
+                if (monop.getJoueurs().isEmpty()==false) {
+                  for (Joueur jtemp : monop.getJoueurs().values()) {
+                       jWin = jtemp;
+                 }
+                  monop.getIhm().WINNER(jWin); partie=false;
+                
+                }
+            }
         }
         //______________________________________________________________________
         }
